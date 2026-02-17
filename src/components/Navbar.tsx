@@ -53,12 +53,12 @@ export default function Navbar() {
         elevation={scrolled ? 1 : 0}
         sx={{
           background: scrolled
-            ? "rgba(250, 250, 249, 0.92)"
+            ? "rgba(248, 250, 252, 0.92)"
             : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           borderBottom: scrolled
-            ? "1px solid rgba(28, 25, 23, 0.06)"
+            ? "1px solid rgba(15, 23, 42, 0.06)"
             : "none",
         }}
       >
@@ -90,7 +90,7 @@ export default function Navbar() {
                     height: 36,
                     borderRadius: "10px",
                     background:
-                      "linear-gradient(135deg, #1c1917 0%, #b8965a 100%)",
+                      "linear-gradient(135deg, #0f172a 0%, #047857 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -106,7 +106,7 @@ export default function Navbar() {
                   sx={{
                     fontSize: "1.3rem",
                     fontWeight: 700,
-                    color: scrolled ? "#1c1917" : "#fff",
+                    color: scrolled ? "#0f172a" : "#fff",
                     transition: "color 0.4s ease",
                     letterSpacing: "-0.01em",
                   }}
@@ -134,7 +134,7 @@ export default function Navbar() {
                   <Button
                     onClick={() => handleNavClick(item.href)}
                     sx={{
-                      color: scrolled ? "#44403c" : "rgba(255,255,255,0.85)",
+                      color: scrolled ? "#475569" : "rgba(255,255,255,0.85)",
                       fontWeight: 500,
                       fontSize: "0.95rem",
                       px: 2,
@@ -143,9 +143,9 @@ export default function Navbar() {
                       transition: "all 0.3s ease",
                       "&:hover": {
                         background: scrolled
-                          ? "rgba(28, 25, 23, 0.05)"
+                          ? "rgba(15, 23, 42, 0.05)"
                           : "rgba(255, 255, 255, 0.12)",
-                        color: scrolled ? "#1c1917" : "#fff",
+                        color: scrolled ? "#0f172a" : "#fff",
                       },
                     }}
                   >
@@ -164,15 +164,15 @@ export default function Navbar() {
                   sx={{
                     ml: 1,
                     background:
-                      "linear-gradient(135deg, #b8965a 0%, #96783f 100%)",
+                      "linear-gradient(135deg, #047857 0%, #065f46 100%)",
                     color: "#fff",
                     fontWeight: 600,
                     px: 3,
                     "&:hover": {
                       background:
-                        "linear-gradient(135deg, #96783f 0%, #7d6435 100%)",
+                        "linear-gradient(135deg, #065f46 0%, #064e3b 100%)",
                       transform: "translateY(-1px)",
-                      boxShadow: "0 4px 15px rgba(184, 150, 90, 0.35)",
+                      boxShadow: "0 4px 15px rgba(4, 120, 87, 0.35)",
                     },
                     transition: "all 0.3s ease",
                   }}
@@ -187,7 +187,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(true)}
               sx={{
                 display: { md: "none" },
-                color: scrolled ? "#1c1917" : "#fff",
+                color: scrolled ? "#0f172a" : "#fff",
               }}
             >
               <MenuIcon />
@@ -208,7 +208,7 @@ export default function Navbar() {
                 width: "100%",
                 maxWidth: 360,
                 background:
-                  "linear-gradient(180deg, #1c1917 0%, #0c0a09 100%)",
+                  "linear-gradient(180deg, #0f172a 0%, #020617 100%)",
                 color: "#fff",
               },
             }}
@@ -236,7 +236,7 @@ export default function Navbar() {
                         borderRadius: 2,
                         py: 1.5,
                         "&:hover": {
-                          background: "rgba(184, 150, 90, 0.1)",
+                          background: "rgba(4, 120, 87, 0.1)",
                         },
                       }}
                     >
@@ -263,13 +263,13 @@ export default function Navbar() {
                   sx={{
                     mt: 2,
                     background:
-                      "linear-gradient(135deg, #b8965a 0%, #96783f 100%)",
+                      "linear-gradient(135deg, #047857 0%, #065f46 100%)",
                     color: "#fff",
                     fontWeight: 600,
                     py: 1.5,
                     "&:hover": {
                       background:
-                        "linear-gradient(135deg, #96783f 0%, #7d6435 100%)",
+                        "linear-gradient(135deg, #065f46 0%, #064e3b 100%)",
                     },
                   }}
                 >

@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* ── Premium Palette ── */
-  --background: #fafaf9;
-  --foreground: #1c1917;
-  --primary: #1c1917;
-  --primary-light: #44403c;
-  --primary-dark: #0c0a09;
-  --accent: #b8965a;
-  --accent-light: #d4b07a;
-  --accent-dark: #96783f;
-  --secondary: #f5f5f4;
-  --surface: #e7e5e4;
-  --muted: #78716c;
-  --warm-gray: #a8a29e;
+  /* ── Premium Navy & Emerald Palette ── */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --primary: #0f172a;
+  --primary-light: #1e293b;
+  --primary-dark: #020617;
+  --accent: #047857;
+  --accent-light: #34d399;
+  --accent-dark: #065f46;
+  --secondary: #f1f5f9;
+  --surface: #e2e8f0;
+  --muted: #64748b;
+  --warm-gray: #94a3b8;
 }
 
 @theme inline {
@@ -67,7 +67,7 @@ body {
   background: var(--muted);
 }
 
-/* Gradient text — champagne gold */
+/* Gradient text — emerald */
 .gradient-text {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, var(--accent) 100%);
   -webkit-background-clip: text;
@@ -83,9 +83,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* Animated gradient — dark luxury */
+/* Animated gradient — deep navy luxury */
 .animated-gradient {
-  background: linear-gradient(-45deg, #1c1917, #0c0a09, #1a1512, #292524);
+  background: linear-gradient(-45deg, #0f172a, #020617, #0c1524, #1e293b);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
 }
@@ -102,8 +102,8 @@ body {
   66% { transform: translateY(10px) rotate(-3deg); }
 }
 
-/* Pulse glow — warm gold */
+/* Pulse glow — emerald */
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(184, 150, 90, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(184, 150, 90, 0.4); }
+  0%, 100% { box-shadow: 0 0 20px rgba(4, 120, 87, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(4, 120, 87, 0.4); }
 }

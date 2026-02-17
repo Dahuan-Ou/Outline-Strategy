@@ -39,7 +39,7 @@ export default function Footer() {
     <Box
       component="footer"
       sx={{
-        background: "linear-gradient(180deg, #1c1917 0%, #0c0a09 100%)",
+        background: "linear-gradient(180deg, #0f172a 0%, #020617 100%)",
         color: "#fff",
         pt: { xs: 8, md: 10 },
         pb: 4,
@@ -57,7 +57,7 @@ export default function Footer() {
                     height: 36,
                     borderRadius: "10px",
                     background:
-                      "linear-gradient(135deg, #1c1917 0%, #b8965a 100%)",
+                      "linear-gradient(135deg, #0f172a 0%, #047857 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -103,9 +103,9 @@ export default function Footer() {
                     border: "1px solid rgba(255,255,255,0.1)",
                     borderRadius: "10px",
                     "&:hover": {
-                      color: "#d4b07a",
-                      borderColor: "rgba(184, 150, 90, 0.3)",
-                      background: "rgba(184, 150, 90, 0.08)",
+                      color: "#34d399",
+                      borderColor: "rgba(4, 120, 87, 0.3)",
+                      background: "rgba(4, 120, 87, 0.08)",
                     },
                     transition: "all 0.3s ease",
                   }}
@@ -147,7 +147,7 @@ export default function Footer() {
                       fontSize: "0.85rem",
                       transition: "all 0.2s ease",
                       "&:hover": {
-                        color: "#d4b07a",
+                        color: "#34d399",
                         paddingLeft: "4px",
                       },
                     }}

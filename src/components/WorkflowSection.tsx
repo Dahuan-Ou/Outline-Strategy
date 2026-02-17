@@ -35,9 +35,9 @@ const steps = [
     ],
     metric: "2-4 weeks",
     metricLabel: "Discovery Phase",
-    color: "#b8965a",
-    lightColor: "#f5efe6",
-    gradient: "linear-gradient(135deg, #b8965a 0%, #d4b07a 100%)",
+    color: "#047857",
+    lightColor: "#ecfdf5",
+    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
   },
   {
     icon: <ArchitectureIcon sx={{ fontSize: 28 }} />,
@@ -54,9 +54,9 @@ const steps = [
     ],
     metric: "3-6 weeks",
     metricLabel: "Planning Phase",
-    color: "#b8965a",
-    lightColor: "#f5efe6",
-    gradient: "linear-gradient(135deg, #b8965a 0%, #d4b07a 100%)",
+    color: "#047857",
+    lightColor: "#ecfdf5",
+    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
   },
   {
     icon: <RocketLaunchIcon sx={{ fontSize: 28 }} />,
@@ -71,11 +71,11 @@ const steps = [
       "Data migration & validation",
       "User acceptance testing",
     ],
-    metric: "8-16 weeks",
+    metric: "4-8 weeks",
     metricLabel: "Build Phase",
-    color: "#b8965a",
-    lightColor: "#f5efe6",
-    gradient: "linear-gradient(135deg, #b8965a 0%, #d4b07a 100%)",
+    color: "#047857",
+    lightColor: "#ecfdf5",
+    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
   },
   {
     icon: <TuneIcon sx={{ fontSize: 28 }} />,
@@ -92,9 +92,9 @@ const steps = [
     ],
     metric: "40%",
     metricLabel: "Avg. Cost Reduction",
-    color: "#b8965a",
-    lightColor: "#f5efe6",
-    gradient: "linear-gradient(135deg, #b8965a 0%, #d4b07a 100%)",
+    color: "#047857",
+    lightColor: "#ecfdf5",
+    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
   },
   {
     icon: <VerifiedIcon sx={{ fontSize: 28 }} />,
@@ -111,9 +111,9 @@ const steps = [
     ],
     metric: "98%",
     metricLabel: "Client Retention",
-    color: "#b8965a",
-    lightColor: "#f5efe6",
-    gradient: "linear-gradient(135deg, #b8965a 0%, #d4b07a 100%)",
+    color: "#047857",
+    lightColor: "#ecfdf5",
+    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
   },
 ];
 
@@ -194,7 +194,7 @@ function DesktopJourney({
             position: "absolute",
             inset: 0,
             borderRadius: 3,
-            background: "#e7e5e4",
+            background: "#e2e8f0",
           }}
         />
         {/* Animated fill */}
@@ -213,8 +213,8 @@ function DesktopJourney({
             height: "100%",
             borderRadius: 12,
             background:
-              "linear-gradient(90deg, #96783f 0%, #b8965a 40%, #d4b07a 70%, #b8965a 100%)",
-            boxShadow: "0 0 16px rgba(184, 150, 90, 0.25)",
+              "linear-gradient(90deg, #065f46 0%, #047857 40%, #34d399 70%, #047857 100%)",
+            boxShadow: "0 0 16px rgba(4, 120, 87, 0.25)",
           }}
         />
 
@@ -265,34 +265,41 @@ function DesktopJourney({
                 animate={
                   isActive
                     ? {
-                        scale: [1, 1.15, 1],
+                        scale: [1.12, 1.22, 1.12],
                         boxShadow: [
                           `0 0 0px ${step.color}00`,
-                          `0 0 28px ${step.color}60`,
-                          `0 0 14px ${step.color}30`,
+                          `0 0 24px ${step.color}50`,
+                          `0 0 0px ${step.color}00`,
                         ],
                       }
-                    : { scale: 1 }
+                    : isPast
+                      ? { scale: 1, boxShadow: `0 0 0px ${step.color}00` }
+                      : { scale: 1, boxShadow: `0 0 0px ${step.color}00` }
                 }
                 transition={
                   isActive
-                    ? { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                    : { duration: 0.3 }
+                    ? {
+                        scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                        boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                      }
+                    : {
+                        scale: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+                        boxShadow: { duration: 0.5, ease: "easeOut" },
+                      }
                 }
-                whileHover={{ scale: 1.18 }}
+                whileHover={{ scale: isActive ? 1.22 : 1.12 }}
                 style={{
-                  width: isActive ? 72 : 60,
-                  height: isActive ? 72 : 60,
+                  width: 64,
+                  height: 64,
                   borderRadius: "50%",
                   background: isPast || isActive ? step.gradient : "#fff",
-                  border: `3px solid ${isPast || isActive ? step.color : "#d6d3d1"}`,
+                  border: `3px solid ${isPast || isActive ? step.color : "#cbd5e1"}`,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: isPast || isActive ? "#fff" : "#a8a29e",
+                  color: isPast || isActive ? "#fff" : "#94a3b8",
                   position: "relative",
                   zIndex: 2,
-                  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                 }}
               >
                 {step.icon}
@@ -307,8 +314,8 @@ function DesktopJourney({
                     height: 26,
                     borderRadius: "50%",
                     background:
-                      isPast || isActive ? step.color : "#e7e5e4",
-                    color: isPast || isActive ? "#fff" : "#a8a29e",
+                      isPast || isActive ? step.color : "#e2e8f0",
+                    color: isPast || isActive ? "#fff" : "#94a3b8",
                     fontSize: "0.72rem",
                     fontWeight: 800,
                     display: "flex",
@@ -334,7 +341,7 @@ function DesktopJourney({
                 sx={{
                   mt: 1.5,
                   fontWeight: isActive ? 700 : 500,
-                  color: isActive ? step.color : "#78716c",
+                  color: isActive ? step.color : "#64748b",
                   fontSize: isActive ? "0.82rem" : "0.78rem",
                   textAlign: "center",
                   transition: "all 0.3s ease",
@@ -417,7 +424,7 @@ function DesktopJourney({
                     variant="h4"
                     sx={{
                       fontWeight: 800,
-                      color: "#1c1917",
+                      color: "#0f172a",
                       mb: 0.5,
                       fontSize: "1.6rem",
                     }}
@@ -440,7 +447,7 @@ function DesktopJourney({
                   <Typography
                     variant="body1"
                     sx={{
-                      color: "#57534e",
+                      color: "#475569",
                       lineHeight: 1.8,
                       mb: 3,
                       fontSize: "0.98rem",
@@ -524,7 +531,7 @@ function DesktopJourney({
                     <Typography
                       variant="caption"
                       sx={{
-                        color: "#78716c",
+                        color: "#64748b",
                         fontWeight: 600,
                         letterSpacing: "0.05em",
                         fontSize: "0.72rem",
@@ -538,7 +545,7 @@ function DesktopJourney({
                   <Typography
                     variant="overline"
                     sx={{
-                      color: "#a8a29e",
+                      color: "#94a3b8",
                       fontWeight: 700,
                       letterSpacing: "0.1em",
                       fontSize: "0.68rem",
@@ -571,7 +578,7 @@ function DesktopJourney({
                           <Typography
                             variant="body2"
                             sx={{
-                              color: "#57534e",
+                              color: "#475569",
                               fontSize: "0.88rem",
                               fontWeight: 500,
                             }}
@@ -606,12 +613,12 @@ function DesktopJourney({
                 height: 10,
                 borderRadius: 5,
                 background:
-                  i === activeStep ? step.gradient : "#e7e5e4",
+                  i === activeStep ? step.gradient : "#e2e8f0",
                 cursor: "pointer",
                 transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                 "&:hover": {
                   background:
-                    i === activeStep ? step.gradient : "#d6d3d1",
+                    i === activeStep ? step.gradient : "#cbd5e1",
                   transform: "scaleY(1.3)",
                 },
               }}
@@ -671,33 +678,42 @@ function MobileJourney({
                   animate={
                     isActive
                       ? {
+                          scale: [1.1, 1.2, 1.1],
                           boxShadow: [
                             `0 0 0px ${step.color}00`,
-                            `0 0 20px ${step.color}50`,
-                            `0 0 10px ${step.color}25`,
+                            `0 0 18px ${step.color}45`,
+                            `0 0 0px ${step.color}00`,
                           ],
                         }
-                      : {}
+                      : {
+                          scale: 1,
+                          boxShadow: `0 0 0px ${step.color}00`,
+                        }
                   }
                   transition={
                     isActive
-                      ? { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                      : {}
+                      ? {
+                          scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                          boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
+                        }
+                      : {
+                          scale: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+                          boxShadow: { duration: 0.5, ease: "easeOut" },
+                        }
                   }
                   style={{
-                    width: isActive ? 52 : 44,
-                    height: isActive ? 52 : 44,
+                    width: 46,
+                    height: 46,
                     borderRadius: "50%",
                     background:
                       isPast || isActive ? step.gradient : "#fff",
-                    border: `2.5px solid ${isPast || isActive ? step.color : "#d6d3d1"}`,
+                    border: `2.5px solid ${isPast || isActive ? step.color : "#cbd5e1"}`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: isPast || isActive ? "#fff" : "#a8a29e",
+                    color: isPast || isActive ? "#fff" : "#94a3b8",
                     flexShrink: 0,
                     zIndex: 2,
-                    transition: "all 0.4s ease",
                   }}
                 >
                   {isPast ? (
@@ -717,7 +733,7 @@ function MobileJourney({
                       background:
                         isPast
                           ? `linear-gradient(180deg, ${step.color}, ${steps[index + 1].color})`
-                          : "#e7e5e4",
+                          : "#e2e8f0",
                       borderRadius: 2,
                       transition: "background 0.5s ease",
                     }}
@@ -756,7 +772,7 @@ function MobileJourney({
                     variant="h6"
                     sx={{
                       fontWeight: 700,
-                      color: "#1c1917",
+                      color: "#0f172a",
                       fontSize: "1.05rem",
                       lineHeight: 1.3,
                       mb: 0.5,
@@ -776,7 +792,7 @@ function MobileJourney({
                         <Typography
                           variant="body2"
                           sx={{
-                            color: "#78716c",
+                            color: "#64748b",
                             lineHeight: 1.7,
                             mt: 1,
                             mb: 2,
@@ -810,7 +826,7 @@ function MobileJourney({
                           <Typography
                             variant="caption"
                             sx={{
-                              color: "#78716c",
+                              color: "#64748b",
                               fontWeight: 600,
                               fontSize: "0.72rem",
                             }}
@@ -844,7 +860,7 @@ function MobileJourney({
                                 <Typography
                                   variant="caption"
                                   sx={{
-                                    color: "#57534e",
+                                    color: "#475569",
                                     fontSize: "0.8rem",
                                   }}
                                 >
@@ -936,21 +952,32 @@ export default function WorkflowSection() {
         position: "relative",
         overflow: "hidden",
         background:
-          "linear-gradient(180deg, #fafaf9 0%, #ffffff 40%, #fafaf9 100%)",
+          "linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #f8fafc 100%)",
       }}
     >
-      {/* Decorative background circles */}
+      {/* ── Dot pattern background ── */}
+      <Box
+        sx={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(4, 120, 87, 0.03) 1px, transparent 0)`,
+          backgroundSize: "48px 48px",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Decorative background circles with parallax */}
       <motion.div style={{ y: bgY }}>
         <Box
           sx={{
             position: "absolute",
             top: "10%",
             left: "-8%",
-            width: 400,
-            height: 400,
+            width: 500,
+            height: 500,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(184, 150, 90, 0.03) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(4, 120, 87, 0.04) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
@@ -959,11 +986,25 @@ export default function WorkflowSection() {
             position: "absolute",
             bottom: "5%",
             right: "-5%",
-            width: 350,
-            height: 350,
+            width: 450,
+            height: 450,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(184, 150, 90, 0.03) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(4, 120, 87, 0.03) 0%, transparent 70%)",
+            pointerEvents: "none",
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 700,
+            height: 700,
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(4, 120, 87, 0.02) 0%, transparent 60%)",
             pointerEvents: "none",
           }}
         />
@@ -973,35 +1014,51 @@ export default function WorkflowSection() {
         {/* Header */}
         <AnimatedSection>
           <Box sx={{ textAlign: "center", mb: { xs: 5, md: 8 } }}>
-            <Chip
-              label="OUR PROCESS"
-              sx={{
-                mb: 2,
-                fontWeight: 700,
-                letterSpacing: "0.08em",
-                fontSize: "0.75rem",
-                background: "rgba(184, 150, 90, 0.08)",
-                color: "#b8965a",
-                border: "1px solid rgba(184, 150, 90, 0.18)",
-              }}
-            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <Chip
+                label="OUR PROCESS"
+                sx={{
+                  mb: 2,
+                  fontWeight: 700,
+                  letterSpacing: "0.08em",
+                  fontSize: "0.75rem",
+                  background: "rgba(4, 120, 87, 0.08)",
+                  color: "#047857",
+                  border: "1px solid rgba(4, 120, 87, 0.18)",
+                }}
+              />
+            </motion.div>
             <Typography
               variant="h2"
               sx={{
                 fontSize: { xs: "2rem", md: "2.8rem" },
-                color: "#1c1917",
+                color: "#0f172a",
                 mb: 2,
               }}
             >
               Your Journey to{" "}
-              <Box component="span" className="gradient-text">
+              <Box
+                component="span"
+                sx={{
+                  background:
+                    "linear-gradient(135deg, #047857 0%, #34d399 50%, #047857 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
                 Transformation
               </Box>
             </Typography>
             <Typography
               variant="body1"
               sx={{
-                color: "#78716c",
+                color: "#64748b",
                 maxWidth: 620,
                 mx: "auto",
                 fontSize: { xs: "1rem", md: "1.1rem" },
@@ -1012,6 +1069,20 @@ export default function WorkflowSection() {
               challenges to sustainable success — delivering value at every
               stage.
             </Typography>
+
+            {/* ── Decorative divider line ── */}
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: 80 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              style={{
+                height: 3,
+                borderRadius: 2,
+                background: "linear-gradient(90deg, #047857, #34d399)",
+                margin: "24px auto 0",
+              }}
+            />
           </Box>
         </AnimatedSection>
 
