@@ -23,64 +23,34 @@ import AnimatedSection from "./AnimatedSection";
 const services = [
   {
     icon: <BusinessCenterIcon sx={{ fontSize: 32 }} />,
-    title: "Business Consulting",
-    shortDesc: "Strategic guidance to accelerate your growth.",
+    title: "Process Architecture",
+    shortDesc: "Designing the operational blueprint that drives clarity, efficiency, and scale across your organisation.",
     fullDesc:
-      "Our seasoned consultants analyse your business landscape, identify opportunities, and craft actionable strategies that drive measurable results. From market entry to operational excellence, we help you make informed decisions with confidence.",
+      "Description placeholder",
     tags: ["Strategy", "Growth", "Market Analysis"],
     color: "#2563eb",
     gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <SettingsSuggestIcon sx={{ fontSize: 32 }} />,
-    title: "Business Process Automation & Optimization",
-    shortDesc: "Streamline operations with intelligent automation.",
+    title: "Systems Alignment",
+    shortDesc: "Ensuring your technology ecosystem reflects — and reinforces — your business logic and workflows.",
     fullDesc:
-      "We identify bottlenecks in your workflows and implement smart automation solutions that reduce manual effort, minimize errors, and increase throughput. Our optimization frameworks ensure every process delivers peak efficiency.",
+      "Description placeholder",
     tags: ["Automation", "Efficiency", "Workflow"],
     color: "#2563eb",
     gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <HealthAndSafetyIcon sx={{ fontSize: 32 }} />,
-    title: "Digital Health Check",
-    shortDesc: "Comprehensive audit of your digital ecosystem.",
+    title: "Intelligent Readiness",
+    shortDesc: "Preparing your processes and data foundations so AI and automation deliver real, measurable value.",
     fullDesc:
-      "Our thorough digital health assessment evaluates your technology stack, security posture, user experience, and digital maturity. We deliver a detailed roadmap highlighting critical gaps and prioritized improvements for your digital transformation.",
+      "Descrption placeholder",
     tags: ["Audit", "Security", "Assessment"],
     color: "#2563eb",
     gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
-  },
-  {
-    icon: <IntegrationInstructionsIcon sx={{ fontSize: 32 }} />,
-    title: "System Integration",
-    shortDesc: "Seamlessly connect your business systems.",
-    fullDesc:
-      "We architect and implement robust integrations between disparate systems, ensuring seamless data flow and unified operations. Whether it's ERP, cloud platforms, or legacy systems, we create a cohesive technology ecosystem that works in harmony.",
-    tags: ["API", "Cloud", "Enterprise"],
-    color: "#2563eb",
-    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
-  },
-  {
-    icon: <GroupsIcon sx={{ fontSize: 32 }} />,
-    title: "CRM Implementation",
-    shortDesc: "Build stronger customer relationships.",
-    fullDesc:
-      "From selection to deployment and beyond, we implement CRM solutions tailored to your business needs. We ensure seamless data migration, user adoption, and process alignment so your teams can nurture leads, close deals, and delight customers.",
-    tags: ["Salesforce", "HubSpot", "Customer Success"],
-    color: "#2563eb",
-    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
-  },
-  {
-    icon: <DevicesIcon sx={{ fontSize: 32 }} />,
-    title: "Web & App Development",
-    shortDesc: "Craft exceptional digital experiences.",
-    fullDesc:
-      "Our engineering teams build performant, scalable, and beautiful web applications and mobile apps. Using modern frameworks and best practices, we deliver products that captivate users and drive engagement from concept to launch and beyond.",
-    tags: ["React", "Mobile", "Full-Stack"],
-    color: "#2563eb",
-    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
-  },
+  }, 
 ];
 
 /* ── Floating decorative dots ── */

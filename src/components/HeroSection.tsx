@@ -429,7 +429,7 @@ export default function HeroSection() {
                   mb: 3,
                 }}
               >
-                {"Elevate Your Business".split(" ").map((word, i) => (
+                {"Aligning Business Process with".split(" ").map((word, i) => (
                   <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
@@ -446,7 +446,7 @@ export default function HeroSection() {
                 ))}
                 <br />
                 <Box component="span">
-                  {"Through Innovation".split(" ").map((word, i) => (
+                  {"Intelligent Systems".split(" ").map((word, i) => (
                     <motion.span
                       key={`grad-${i}`}
                       initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
@@ -490,9 +490,8 @@ export default function HeroSection() {
                   fontSize: { xs: "1rem", md: "1.15rem" },
                 }}
               >
-                We partner with forward-thinking organizations to streamline
-                operations, implement cutting-edge technology, and unlock
-                sustainable growth.
+                We help enterprises design clear, scalable processes — then align
+                systems and AI capabilities to deliver lasting operational advantage.
               </Typography>
             </motion.div>
 
@@ -525,7 +524,7 @@ export default function HeroSection() {
                       transition: "all 0.3s ease",
                     }}
                   >
-                    Explore Services
+                    Start the Conversation
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
