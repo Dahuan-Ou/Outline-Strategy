@@ -175,10 +175,12 @@ export async function POST(
     }
 
     // Send email via Resend
-    // NOTE: Change the `from` address once you verify a custom domain in Resend
+    // NOTE: onboarding@resend.dev can only send to the Resend account owner.
+    // Once you verify a custom domain in Resend, update `from` and add extra
+    // recipients (e.g. raveena.r.rajput@gmail.com) back to the `to` array.
     const { error } = await resend.emails.send({
       from: "Raveena Website <onboarding@resend.dev>",
-      to: ["dahuan.ou@gmail.com", "raveena.r.rajput@gmail.com"],
+      to: ["dahuan.ou@gmail.com"],
       replyTo: email,
       subject: `New Contact: ${firstName} ${lastName} from ${company}`,
       html: buildEmailHtml({ firstName, lastName, email, company, message }),
@@ -186,8 +188,16 @@ export async function POST(
 
     if (error) {
       console.error("Resend error:", error);
+      // Surface the actual Resend error in development for easier debugging
+      const detail =
+        process.env.NODE_ENV === "development"
+          ? ` (Resend: ${error.message})`
+          : "";
       return NextResponse.json(
-        { success: false, message: "Failed to send email. Please try again." },
+        {
+          success: false,
+          message: `Failed to send email. Please try again.${detail}`,
+        },
         { status: 500 }
       );
     }
