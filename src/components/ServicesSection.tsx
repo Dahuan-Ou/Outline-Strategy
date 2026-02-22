@@ -28,8 +28,8 @@ const services = [
     fullDesc:
       "Our seasoned consultants analyse your business landscape, identify opportunities, and craft actionable strategies that drive measurable results. From market entry to operational excellence, we help you make informed decisions with confidence.",
     tags: ["Strategy", "Growth", "Market Analysis"],
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <SettingsSuggestIcon sx={{ fontSize: 32 }} />,
@@ -38,8 +38,8 @@ const services = [
     fullDesc:
       "We identify bottlenecks in your workflows and implement smart automation solutions that reduce manual effort, minimize errors, and increase throughput. Our optimization frameworks ensure every process delivers peak efficiency.",
     tags: ["Automation", "Efficiency", "Workflow"],
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <HealthAndSafetyIcon sx={{ fontSize: 32 }} />,
@@ -48,8 +48,8 @@ const services = [
     fullDesc:
       "Our thorough digital health assessment evaluates your technology stack, security posture, user experience, and digital maturity. We deliver a detailed roadmap highlighting critical gaps and prioritized improvements for your digital transformation.",
     tags: ["Audit", "Security", "Assessment"],
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <IntegrationInstructionsIcon sx={{ fontSize: 32 }} />,
@@ -58,8 +58,8 @@ const services = [
     fullDesc:
       "We architect and implement robust integrations between disparate systems, ensuring seamless data flow and unified operations. Whether it's ERP, cloud platforms, or legacy systems, we create a cohesive technology ecosystem that works in harmony.",
     tags: ["API", "Cloud", "Enterprise"],
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <GroupsIcon sx={{ fontSize: 32 }} />,
@@ -68,8 +68,8 @@ const services = [
     fullDesc:
       "From selection to deployment and beyond, we implement CRM solutions tailored to your business needs. We ensure seamless data migration, user adoption, and process alignment so your teams can nurture leads, close deals, and delight customers.",
     tags: ["Salesforce", "HubSpot", "Customer Success"],
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <DevicesIcon sx={{ fontSize: 32 }} />,
@@ -78,8 +78,8 @@ const services = [
     fullDesc:
       "Our engineering teams build performant, scalable, and beautiful web applications and mobile apps. Using modern frameworks and best practices, we deliver products that captivate users and drive engagement from concept to launch and beyond.",
     tags: ["React", "Mobile", "Full-Stack"],
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
 ];
 
@@ -113,7 +113,7 @@ export default function ServicesSection() {
         sx={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(4, 120, 87, 0.035) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.035) 1px, transparent 0)`,
           backgroundSize: "48px 48px",
           pointerEvents: "none",
         }}
@@ -144,7 +144,7 @@ export default function ServicesSection() {
             width: dot.size,
             height: dot.size,
             borderRadius: "50%",
-            background: "#047857",
+            background: "#2563eb",
             pointerEvents: "none",
           }}
         />
@@ -159,7 +159,7 @@ export default function ServicesSection() {
           width: 400,
           height: 400,
           background:
-            "radial-gradient(circle at 100% 0%, rgba(4, 120, 87, 0.04) 0%, transparent 60%)",
+            "radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.04) 0%, transparent 60%)",
           pointerEvents: "none",
         }}
       />
@@ -171,7 +171,7 @@ export default function ServicesSection() {
           width: 400,
           height: 400,
           background:
-            "radial-gradient(circle at 0% 100%, rgba(4, 120, 87, 0.03) 0%, transparent 60%)",
+            "radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.03) 0%, transparent 60%)",
           pointerEvents: "none",
         }}
       />
@@ -193,9 +193,9 @@ export default function ServicesSection() {
                   fontWeight: 700,
                   letterSpacing: "0.08em",
                   fontSize: "0.75rem",
-                  background: "rgba(4, 120, 87, 0.08)",
-                  color: "#047857",
-                  border: "1px solid rgba(4, 120, 87, 0.18)",
+                  background: "rgba(37, 99, 235, 0.08)",
+                  color: "#2563eb",
+                  border: "1px solid rgba(37, 99, 235, 0.18)",
                 }}
               />
             </motion.div>
@@ -212,7 +212,7 @@ export default function ServicesSection() {
                 component="span"
                 sx={{
                   background:
-                    "linear-gradient(135deg, #047857 0%, #34d399 50%, #047857 100%)",
+                    "linear-gradient(135deg, #2563eb 0%, #60a5fa 50%, #2563eb 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -245,7 +245,7 @@ export default function ServicesSection() {
               style={{
                 height: 3,
                 borderRadius: 2,
-                background: "linear-gradient(90deg, #047857, #34d399)",
+                background: "linear-gradient(90deg, #2563eb, #60a5fa)",
                 margin: "24px auto 0",
               }}
             />
@@ -310,35 +310,28 @@ export default function ServicesSection() {
                     />
 
                     <CardContent sx={{ p: { xs: 3, md: 3.5 } }}>
-                      {/* Icon with glow on hover */}
-                      <motion.div
-                        whileHover={{
-                          rotate: [0, -8, 8, 0],
+                      {/* Icon */}
+                      <Box
+                        sx={{
+                          width: 56,
+                          height: 56,
+                          borderRadius: "14px",
+                          background: `${service.color}10`,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: service.color,
+                          mb: 2.5,
+                          transition: "all 0.3s ease",
+                          ".MuiCard-root:hover &": {
+                            background: service.gradient,
+                            color: "#fff",
+                            boxShadow: `0 4px 20px ${service.color}30`,
+                          },
                         }}
-                        transition={{ duration: 0.5 }}
                       >
-                        <Box
-                          sx={{
-                            width: 56,
-                            height: 56,
-                            borderRadius: "14px",
-                            background: `${service.color}10`,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            color: service.color,
-                            mb: 2.5,
-                            transition: "all 0.3s ease",
-                            ".MuiCard-root:hover &": {
-                              background: service.gradient,
-                              color: "#fff",
-                              boxShadow: `0 4px 20px ${service.color}30`,
-                            },
-                          }}
-                        >
-                          {service.icon}
-                        </Box>
-                      </motion.div>
+                        {service.icon}
+                      </Box>
 
                       <Typography
                         variant="h6"
@@ -379,7 +372,7 @@ export default function ServicesSection() {
                                 lineHeight: 1.7,
                                 mb: 2.5,
                                 pt: 1.5,
-                                borderTop: "1px solid rgba(4, 120, 87, 0.1)",
+                                borderTop: "1px solid rgba(37, 99, 235, 0.1)",
                               }}
                             >
                               {service.fullDesc}
@@ -438,14 +431,14 @@ export default function ServicesSection() {
                             borderRadius: "50%",
                             background:
                               expandedIndex === index
-                                ? "rgba(4, 120, 87, 0.12)"
+                                ? "rgba(37, 99, 235, 0.12)"
                                 : "rgba(15, 23, 42, 0.04)",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             fontSize: "0.75rem",
                             color:
-                              expandedIndex === index ? "#047857" : "#94a3b8",
+                              expandedIndex === index ? "#2563eb" : "#94a3b8",
                             transition: "all 0.3s ease",
                           }}
                         >

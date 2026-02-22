@@ -26,19 +26,19 @@ const contactInfo = [
     icon: <EmailIcon />,
     label: "Email Us",
     value: "raveena.r.rajput@gmail.com",
-    color: "#047857",
+    color: "#2563eb",
   },
   {
     icon: <PhoneIcon />,
     label: "Call Us",
     value: "+64 210 843 4488",
-    color: "#047857",
+    color: "#2563eb",
   },
   {
     icon: <LocationOnIcon />,
     label: "Visit Us",
     value: "Auckland, New Zealand",
-    color: "#047857",
+    color: "#2563eb",
   },
 ];
 
@@ -47,20 +47,20 @@ const textFieldSx = {
     borderRadius: 2,
     transition: "all 0.3s ease",
     "&:hover fieldset": {
-      borderColor: "#047857",
+      borderColor: "#2563eb",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#047857",
+      borderColor: "#2563eb",
     },
     "&:hover": {
-      boxShadow: "0 2px 8px rgba(4, 120, 87, 0.08)",
+      boxShadow: "0 2px 8px rgba(37, 99, 235, 0.08)",
     },
     "&.Mui-focused": {
-      boxShadow: "0 2px 12px rgba(4, 120, 87, 0.12)",
+      boxShadow: "0 2px 12px rgba(37, 99, 235, 0.12)",
     },
   },
   "& .MuiInputLabel-root.Mui-focused": {
-    color: "#065f46",
+    color: "#1d4ed8",
   },
 };
 
@@ -197,7 +197,7 @@ export default function CTASection() {
           width: 500,
           height: 500,
           background:
-            "radial-gradient(circle at 0% 0%, rgba(4, 120, 87, 0.04) 0%, transparent 60%)",
+            "radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.04) 0%, transparent 60%)",
           pointerEvents: "none",
         }}
       />
@@ -209,7 +209,7 @@ export default function CTASection() {
           width: 500,
           height: 500,
           background:
-            "radial-gradient(circle at 100% 100%, rgba(4, 120, 87, 0.03) 0%, transparent 60%)",
+            "radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.03) 0%, transparent 60%)",
           pointerEvents: "none",
         }}
       />
@@ -219,7 +219,7 @@ export default function CTASection() {
         sx={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(4, 120, 87, 0.03) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.03) 1px, transparent 0)`,
           backgroundSize: "48px 48px",
           pointerEvents: "none",
         }}
@@ -237,7 +237,7 @@ export default function CTASection() {
           height: 2,
           borderRadius: 1,
           background:
-            "linear-gradient(90deg, transparent, rgba(4, 120, 87, 0.2), transparent)",
+            "linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.2), transparent)",
           pointerEvents: "none",
         }}
       />
@@ -268,7 +268,7 @@ export default function CTASection() {
                     component="span"
                     sx={{
                       background:
-                        "linear-gradient(135deg, #047857 0%, #34d399 50%, #047857 100%)",
+                        "linear-gradient(135deg, #2563eb 0%, #60a5fa 50%, #2563eb 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
@@ -303,7 +303,7 @@ export default function CTASection() {
                 style={{
                   height: 3,
                   borderRadius: 2,
-                  background: "linear-gradient(90deg, #047857, #34d399)",
+                  background: "linear-gradient(90deg, #2563eb, #60a5fa)",
                   marginBottom: 32,
                 }}
               />
@@ -328,7 +328,7 @@ export default function CTASection() {
                         borderRadius: 2,
                         transition: "all 0.3s ease",
                         "&:hover": {
-                          background: "rgba(4, 120, 87, 0.04)",
+                          background: "rgba(37, 99, 235, 0.04)",
                         },
                       }}
                     >
@@ -344,7 +344,7 @@ export default function CTASection() {
                           color: info.color,
                           transition: "all 0.3s ease",
                           "div:hover > &": {
-                            background: `linear-gradient(135deg, ${info.color}, #34d399)`,
+                            background: `linear-gradient(135deg, ${info.color}, #60a5fa)`,
                             color: "#fff",
                             boxShadow: `0 4px 16px ${info.color}30`,
                           },
@@ -401,8 +401,8 @@ export default function CTASection() {
                     overflow: "hidden",
                     transition: "all 0.4s ease",
                     "&:hover": {
-                      boxShadow: "0 16px 60px rgba(4, 120, 87, 0.1)",
-                      borderColor: "rgba(4, 120, 87, 0.12)",
+                      boxShadow: "0 16px 60px rgba(37, 99, 235, 0.1)",
+                      borderColor: "rgba(37, 99, 235, 0.12)",
                     },
                   }}
                 >
@@ -415,7 +415,7 @@ export default function CTASection() {
                       right: 0,
                       height: 3,
                       background:
-                        "linear-gradient(90deg, #047857, #34d399, #047857)",
+                        "linear-gradient(90deg, #2563eb, #60a5fa, #2563eb)",
                     }}
                   />
 
@@ -535,15 +535,15 @@ export default function CTASection() {
                           }
                           sx={{
                             background:
-                              "linear-gradient(135deg, #047857 0%, #065f46 100%)",
+                              "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
                             color: "#fff",
                             fontWeight: 600,
                             py: 1.5,
                             fontSize: "1rem",
                             "&:hover": {
                               background:
-                                "linear-gradient(135deg, #065f46 0%, #064e3b 100%)",
-                              boxShadow: "0 8px 24px rgba(4, 120, 87, 0.3)",
+                                "linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)",
+                              boxShadow: "0 8px 24px rgba(37, 99, 235, 0.3)",
                             },
                             transition: "all 0.3s ease",
                           }}
@@ -571,8 +571,8 @@ export default function CTASection() {
                         width: 6,
                         height: 6,
                         borderRadius: "50%",
-                        background: "#34d399",
-                        boxShadow: "0 0 6px rgba(52, 211, 153, 0.5)",
+                        background: "#60a5fa",
+                        boxShadow: "0 0 6px rgba(96, 165, 250, 0.5)",
                       }}
                     />
                     <Typography

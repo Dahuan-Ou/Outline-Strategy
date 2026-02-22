@@ -57,7 +57,7 @@ export default function Footer() {
                     height: 36,
                     borderRadius: "10px",
                     background:
-                      "linear-gradient(135deg, #0f172a 0%, #047857 100%)",
+                      "linear-gradient(135deg, #0f172a 0%, #2563eb 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -103,9 +103,9 @@ export default function Footer() {
                     border: "1px solid rgba(255,255,255,0.1)",
                     borderRadius: "10px",
                     "&:hover": {
-                      color: "#34d399",
-                      borderColor: "rgba(4, 120, 87, 0.3)",
-                      background: "rgba(4, 120, 87, 0.08)",
+                      color: "#60a5fa",
+                      borderColor: "rgba(37, 99, 235, 0.3)",
+                      background: "rgba(37, 99, 235, 0.08)",
                     },
                     transition: "all 0.3s ease",
                   }}
@@ -147,7 +147,7 @@ export default function Footer() {
                       fontSize: "0.85rem",
                       transition: "all 0.2s ease",
                       "&:hover": {
-                        color: "#34d399",
+                        color: "#60a5fa",
                         paddingLeft: "4px",
                       },
                     }}

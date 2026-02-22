@@ -53,7 +53,7 @@ function buildEmailHtml(data: ContactFormData): string {
                 <tr>
                   <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
                     <span style="color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Email</span><br />
-                    <a href="mailto:${escapeHtml(email)}" style="color: #047857; font-size: 16px; font-weight: 500; text-decoration: none;">${escapeHtml(email)}</a>
+                    <a href="mailto:${escapeHtml(email)}" style="color: #2563eb; font-size: 16px; font-weight: 500; text-decoration: none;">${escapeHtml(email)}</a>
                   </td>
                 </tr>
                 <tr>

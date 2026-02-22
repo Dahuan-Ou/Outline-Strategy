@@ -22,32 +22,32 @@ const strengths = [
     title: "Rapid Delivery",
     description:
       "Agile methodologies and experienced teams ensure your solutions go live faster without compromising quality.",
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <PsychologyIcon sx={{ fontSize: 28 }} />,
     title: "Deep Expertise",
     description:
       "Our consultants bring decades of cross-industry experience, ensuring solutions grounded in real-world insight.",
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <HandshakeIcon sx={{ fontSize: 28 }} />,
     title: "True Partnership",
     description:
       "We embed ourselves in your teams, aligning our success with yours for outcomes that exceed expectations.",
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <TrendingUpIcon sx={{ fontSize: 28 }} />,
     title: "Measurable Impact",
     description:
       "Every engagement is tied to KPIs and business outcomes, so you always see the return on investment.",
-    color: "#047857",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
 ];
 
@@ -119,8 +119,8 @@ export default function WhyUsSection() {
             position: "absolute",
             inset: 0,
             backgroundImage: `
-              radial-gradient(circle at 20% 50%, rgba(52, 211, 153, 0.08) 0%, transparent 50%),
-              radial-gradient(circle at 80% 50%, rgba(52, 211, 153, 0.05) 0%, transparent 50%)
+              radial-gradient(circle at 20% 50%, rgba(96, 165, 250, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(96, 165, 250, 0.05) 0%, transparent 50%)
             `,
           }}
         />
@@ -154,7 +154,7 @@ export default function WhyUsSection() {
             left: "20%",
             height: 1,
             background:
-              "linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.3), transparent)",
+              "linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.3), transparent)",
             pointerEvents: "none",
           }}
         />
@@ -174,7 +174,7 @@ export default function WhyUsSection() {
               <Box
                 component="span"
                 sx={{
-                  color: "#34d399",
+                  color: "#60a5fa",
                 }}
               >
                 Themselves
@@ -219,7 +219,7 @@ export default function WhyUsSection() {
                       transition: "all 0.3s ease",
                       "&:hover": {
                         background: "rgba(255,255,255,0.08)",
-                        borderColor: "rgba(52, 211, 153, 0.2)",
+                        borderColor: "rgba(96, 165, 250, 0.2)",
                         transform: "translateY(-4px)",
                       },
                     }}
@@ -234,7 +234,7 @@ export default function WhyUsSection() {
                         width: 30,
                         height: 2,
                         borderRadius: 1,
-                        background: "linear-gradient(90deg, #047857, #34d399)",
+                        background: "linear-gradient(90deg, #2563eb, #60a5fa)",
                         mx: "auto",
                         mt: 1,
                         mb: 1,
@@ -268,7 +268,7 @@ export default function WhyUsSection() {
             left: "20%",
             height: 1,
             background:
-              "linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.3), transparent)",
+              "linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.3), transparent)",
             pointerEvents: "none",
           }}
         />
@@ -294,7 +294,7 @@ export default function WhyUsSection() {
             height: 600,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(4, 120, 87, 0.025) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(37, 99, 235, 0.025) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
@@ -315,9 +315,9 @@ export default function WhyUsSection() {
                     fontWeight: 700,
                     letterSpacing: "0.08em",
                     fontSize: "0.75rem",
-                    background: "rgba(4, 120, 87, 0.08)",
-                    color: "#047857",
-                    border: "1px solid rgba(4, 120, 87, 0.18)",
+                    background: "rgba(37, 99, 235, 0.08)",
+                    color: "#2563eb",
+                    border: "1px solid rgba(37, 99, 235, 0.18)",
                   }}
                 />
               </motion.div>
@@ -334,7 +334,7 @@ export default function WhyUsSection() {
                   component="span"
                   sx={{
                     background:
-                      "linear-gradient(135deg, #047857 0%, #34d399 50%, #047857 100%)",
+                      "linear-gradient(135deg, #2563eb 0%, #60a5fa 50%, #2563eb 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -366,7 +366,7 @@ export default function WhyUsSection() {
                 style={{
                   height: 3,
                   borderRadius: 2,
-                  background: "linear-gradient(90deg, #047857, #34d399)",
+                  background: "linear-gradient(90deg, #2563eb, #60a5fa)",
                   margin: "24px auto 0",
                 }}
               />

@@ -90,7 +90,7 @@ export default function Navbar() {
                     height: 36,
                     borderRadius: "10px",
                     background:
-                      "linear-gradient(135deg, #0f172a 0%, #047857 100%)",
+                      "linear-gradient(135deg, #0f172a 0%, #2563eb 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -164,15 +164,15 @@ export default function Navbar() {
                   sx={{
                     ml: 1,
                     background:
-                      "linear-gradient(135deg, #047857 0%, #065f46 100%)",
+                      "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
                     color: "#fff",
                     fontWeight: 600,
                     px: 3,
                     "&:hover": {
                       background:
-                        "linear-gradient(135deg, #065f46 0%, #064e3b 100%)",
+                        "linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)",
                       transform: "translateY(-1px)",
-                      boxShadow: "0 4px 15px rgba(4, 120, 87, 0.35)",
+                      boxShadow: "0 4px 15px rgba(37, 99, 235, 0.35)",
                     },
                     transition: "all 0.3s ease",
                   }}
@@ -236,7 +236,7 @@ export default function Navbar() {
                         borderRadius: 2,
                         py: 1.5,
                         "&:hover": {
-                          background: "rgba(4, 120, 87, 0.1)",
+                          background: "rgba(37, 99, 235, 0.1)",
                         },
                       }}
                     >
@@ -263,13 +263,13 @@ export default function Navbar() {
                   sx={{
                     mt: 2,
                     background:
-                      "linear-gradient(135deg, #047857 0%, #065f46 100%)",
+                      "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
                     color: "#fff",
                     fontWeight: 600,
                     py: 1.5,
                     "&:hover": {
                       background:
-                        "linear-gradient(135deg, #065f46 0%, #064e3b 100%)",
+                        "linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)",
                     },
                   }}
                 >

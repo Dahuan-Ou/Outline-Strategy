@@ -78,7 +78,7 @@ function AnimatedStatValue({ value }: { value: string }) {
     <Typography
       variant="h4"
       sx={{
-        color: "#34d399",
+        color: "#60a5fa",
         fontWeight: 700,
         fontSize: { xs: "1.5rem", md: "2rem" },
         fontVariantNumeric: "tabular-nums",
@@ -147,8 +147,8 @@ function DNAHelix() {
                 width: 6,
                 height: 6,
                 borderRadius: "50%",
-                background: "#34d399",
-                boxShadow: `0 0 12px rgba(52, 211, 153, ${point.shadow1})`,
+                background: "#60a5fa",
+                boxShadow: `0 0 12px rgba(96, 165, 250, ${point.shadow1})`,
                 transform: `translateZ(${point.z1}px)`,
               }}
             />
@@ -170,8 +170,8 @@ function DNAHelix() {
                 width: 5,
                 height: 5,
                 borderRadius: "50%",
-                background: "#047857",
-                boxShadow: `0 0 10px rgba(4, 120, 87, ${point.shadow2})`,
+                background: "#2563eb",
+                boxShadow: `0 0 10px rgba(37, 99, 235, ${point.shadow2})`,
                 transform: `translateZ(${point.z2}px)`,
               }}
             />
@@ -190,7 +190,7 @@ function DNAHelix() {
                   left: `calc(50% + ${Math.min(point.xOffset1, point.xOffset2)}px)`,
                   width: Math.abs(point.xOffset1 - point.xOffset2),
                   height: 1,
-                  background: "linear-gradient(90deg, #34d399, #047857)",
+                  background: "linear-gradient(90deg, #60a5fa, #2563eb)",
                 }}
               />
             )}
@@ -230,7 +230,7 @@ export default function HeroSection() {
             width: p.size,
             height: p.size,
             borderRadius: "50%",
-            background: "rgba(52, 211, 153, 0.4)",
+            background: "rgba(96, 165, 250, 0.4)",
           }}
           animate={{
             y: [0, -40, 20, 0],
@@ -267,7 +267,7 @@ export default function HeroSection() {
             y1={networkNodes[a].y}
             x2={networkNodes[b].x}
             y2={networkNodes[b].y}
-            stroke="rgba(4, 120, 87, 0.08)"
+            stroke="rgba(37, 99, 235, 0.08)"
             strokeWidth={0.15}
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
@@ -280,7 +280,7 @@ export default function HeroSection() {
           <motion.circle
             key={`pulse-${i}`}
             r={0.3}
-            fill="#34d399"
+            fill="#60a5fa"
             filter="url(#glow)"
             initial={{ opacity: 0 }}
             animate={{
@@ -305,7 +305,7 @@ export default function HeroSection() {
             cx={node.x}
             cy={node.y}
             r={0.4}
-            fill="rgba(52, 211, 153, 0.25)"
+            fill="rgba(96, 165, 250, 0.25)"
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: i * 0.08 + 0.5 }}
@@ -330,8 +330,8 @@ export default function HeroSection() {
           position: "absolute",
           inset: 0,
           backgroundImage: `
-            linear-gradient(rgba(4, 120, 87, 0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(4, 120, 87, 0.025) 1px, transparent 1px)
+            linear-gradient(rgba(37, 99, 235, 0.025) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(37, 99, 235, 0.025) 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",
         }}
@@ -344,7 +344,7 @@ export default function HeroSection() {
           left: 0,
           width: "100%",
           height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.15), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.15), transparent)",
           pointerEvents: "none",
         }}
         animate={{ top: ["0%", "100%"] }}
@@ -381,8 +381,8 @@ export default function HeroSection() {
                   px: 2.5,
                   py: 0.8,
                   borderRadius: "50px",
-                  background: "rgba(4, 120, 87, 0.12)",
-                  border: "1px solid rgba(4, 120, 87, 0.25)",
+                  background: "rgba(37, 99, 235, 0.12)",
+                  border: "1px solid rgba(37, 99, 235, 0.25)",
                   mb: 4,
                 }}
               >
@@ -396,14 +396,14 @@ export default function HeroSection() {
                     width: 8,
                     height: 8,
                     borderRadius: "50%",
-                    background: "#34d399",
-                    boxShadow: "0 0 8px rgba(52, 211, 153, 0.6)",
+                    background: "#60a5fa",
+                    boxShadow: "0 0 8px rgba(96, 165, 250, 0.6)",
                   }}
                 />
                 <Typography
                   variant="body2"
                   sx={{
-                    color: "#34d399",
+                    color: "#60a5fa",
                     fontWeight: 600,
                     fontSize: "0.85rem",
                     letterSpacing: "0.08em",
@@ -460,7 +460,7 @@ export default function HeroSection() {
                         display: "inline-block",
                         marginRight: "0.3em",
                         background:
-                          "linear-gradient(135deg, #34d399 0%, #6ee7b7 40%, #a7f3d0 60%, #34d399 100%)",
+                          "linear-gradient(135deg, #60a5fa 0%, #93c5fd 40%, #bfdbfe 60%, #60a5fa 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
@@ -511,7 +511,7 @@ export default function HeroSection() {
                     onClick={() => handleScroll("#services")}
                     sx={{
                       background:
-                        "linear-gradient(135deg, #047857 0%, #065f46 100%)",
+                        "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
                       color: "#fff",
                       fontWeight: 600,
                       px: 4,
@@ -519,8 +519,8 @@ export default function HeroSection() {
                       fontSize: "1rem",
                       "&:hover": {
                         background:
-                          "linear-gradient(135deg, #34d399 0%, #047857 100%)",
-                        boxShadow: "0 8px 30px rgba(4, 120, 87, 0.35)",
+                          "linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)",
+                        boxShadow: "0 8px 30px rgba(37, 99, 235, 0.35)",
                       },
                       transition: "all 0.3s ease",
                     }}
@@ -542,9 +542,9 @@ export default function HeroSection() {
                       py: 1.8,
                       fontSize: "1rem",
                       "&:hover": {
-                        borderColor: "rgba(4, 120, 87, 0.5)",
-                        background: "rgba(4, 120, 87, 0.08)",
-                        color: "#34d399",
+                        borderColor: "rgba(37, 99, 235, 0.5)",
+                        background: "rgba(37, 99, 235, 0.08)",
+                        color: "#60a5fa",
                       },
                       transition: "all 0.3s ease",
                     }}
@@ -627,16 +627,16 @@ export default function HeroSection() {
                   position: "absolute",
                   inset: -20,
                   borderRadius: "50%",
-                  border: "1px solid rgba(52, 211, 153, 0.15)",
+                  border: "1px solid rgba(96, 165, 250, 0.15)",
                 }}
               />
 
               {/* Orbiting rings with dots */}
               {[
-                { inset: 0, duration: 25, direction: 1, dotSize: 10, color: "#34d399" },
-                { inset: 35, duration: 18, direction: -1, dotSize: 8, color: "#047857" },
-                { inset: 70, duration: 30, direction: 1, dotSize: 6, color: "#34d399" },
-                { inset: 100, duration: 22, direction: -1, dotSize: 7, color: "#065f46" },
+                { inset: 0, duration: 25, direction: 1, dotSize: 10, color: "#60a5fa" },
+                { inset: 35, duration: 18, direction: -1, dotSize: 8, color: "#2563eb" },
+                { inset: 70, duration: 30, direction: 1, dotSize: 6, color: "#60a5fa" },
+                { inset: 100, duration: 22, direction: -1, dotSize: 7, color: "#1d4ed8" },
               ].map((ring, idx) => (
                 <motion.div
                   key={`ring-${idx}`}
@@ -644,7 +644,7 @@ export default function HeroSection() {
                     position: "absolute",
                     inset: ring.inset,
                     borderRadius: "50%",
-                    border: `1px solid rgba(4, 120, 87, ${0.06 + idx * 0.03})`,
+                    border: `1px solid rgba(37, 99, 235, ${0.06 + idx * 0.03})`,
                   }}
                   animate={{ rotate: ring.direction * 360 }}
                   transition={{
@@ -702,7 +702,7 @@ export default function HeroSection() {
                   height: 100,
                   borderRadius: "50%",
                   background:
-                    "radial-gradient(circle, rgba(4, 120, 87, 0.2) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -711,9 +711,9 @@ export default function HeroSection() {
                 <motion.div
                   animate={{
                     boxShadow: [
-                      "0 0 20px rgba(4, 120, 87, 0.2), inset 0 0 20px rgba(52, 211, 153, 0.1)",
-                      "0 0 50px rgba(4, 120, 87, 0.4), inset 0 0 30px rgba(52, 211, 153, 0.2)",
-                      "0 0 20px rgba(4, 120, 87, 0.2), inset 0 0 20px rgba(52, 211, 153, 0.1)",
+                      "0 0 20px rgba(37, 99, 235, 0.2), inset 0 0 20px rgba(96, 165, 250, 0.1)",
+                      "0 0 50px rgba(37, 99, 235, 0.4), inset 0 0 30px rgba(96, 165, 250, 0.2)",
+                      "0 0 20px rgba(37, 99, 235, 0.2), inset 0 0 20px rgba(96, 165, 250, 0.1)",
                     ],
                     scale: [1, 1.05, 1],
                   }}
@@ -723,11 +723,11 @@ export default function HeroSection() {
                     height: 72,
                     borderRadius: "50%",
                     background:
-                      "linear-gradient(135deg, #047857 0%, #0f172a 50%, #065f46 100%)",
+                      "linear-gradient(135deg, #2563eb 0%, #0f172a 50%, #1d4ed8 100%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    border: "1px solid rgba(52, 211, 153, 0.2)",
+                    border: "1px solid rgba(96, 165, 250, 0.2)",
                   }}
                 >
                   <Typography
@@ -735,7 +735,7 @@ export default function HeroSection() {
                       color: "#fff",
                       fontWeight: 800,
                       fontSize: "1.6rem",
-                      textShadow: "0 0 20px rgba(52, 211, 153, 0.5)",
+                      textShadow: "0 0 20px rgba(96, 165, 250, 0.5)",
                     }}
                   >
                     R
@@ -783,13 +783,13 @@ export default function HeroSection() {
                       px: 2,
                       py: 0.8,
                       borderRadius: "8px",
-                      background: "rgba(4, 120, 87, 0.1)",
-                      border: "1px solid rgba(4, 120, 87, 0.25)",
+                      background: "rgba(37, 99, 235, 0.1)",
+                      border: "1px solid rgba(37, 99, 235, 0.25)",
                       backdropFilter: "blur(12px)",
                       transition: "all 0.3s ease",
                       "&:hover": {
-                        background: "rgba(4, 120, 87, 0.2)",
-                        borderColor: "rgba(52, 211, 153, 0.5)",
+                        background: "rgba(37, 99, 235, 0.2)",
+                        borderColor: "rgba(96, 165, 250, 0.5)",
                         transform: "scale(1.1)",
                       },
                     }}
@@ -797,7 +797,7 @@ export default function HeroSection() {
                     <Typography
                       variant="caption"
                       sx={{
-                        color: "#34d399",
+                        color: "#60a5fa",
                         fontWeight: 600,
                         fontSize: "0.72rem",
                         letterSpacing: "0.1em",

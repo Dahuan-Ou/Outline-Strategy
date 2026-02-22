@@ -35,9 +35,9 @@ const steps = [
     ],
     metric: "2-4 weeks",
     metricLabel: "Discovery Phase",
-    color: "#047857",
-    lightColor: "#ecfdf5",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    lightColor: "#eff6ff",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <ArchitectureIcon sx={{ fontSize: 28 }} />,
@@ -54,9 +54,9 @@ const steps = [
     ],
     metric: "3-6 weeks",
     metricLabel: "Planning Phase",
-    color: "#047857",
-    lightColor: "#ecfdf5",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    lightColor: "#eff6ff",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <RocketLaunchIcon sx={{ fontSize: 28 }} />,
@@ -73,9 +73,9 @@ const steps = [
     ],
     metric: "4-8 weeks",
     metricLabel: "Build Phase",
-    color: "#047857",
-    lightColor: "#ecfdf5",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    lightColor: "#eff6ff",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <TuneIcon sx={{ fontSize: 28 }} />,
@@ -92,9 +92,9 @@ const steps = [
     ],
     metric: "40%",
     metricLabel: "Avg. Cost Reduction",
-    color: "#047857",
-    lightColor: "#ecfdf5",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    lightColor: "#eff6ff",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
   {
     icon: <VerifiedIcon sx={{ fontSize: 28 }} />,
@@ -111,9 +111,9 @@ const steps = [
     ],
     metric: "98%",
     metricLabel: "Client Retention",
-    color: "#047857",
-    lightColor: "#ecfdf5",
-    gradient: "linear-gradient(135deg, #047857 0%, #34d399 100%)",
+    color: "#2563eb",
+    lightColor: "#eff6ff",
+    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
   },
 ];
 
@@ -213,8 +213,8 @@ function DesktopJourney({
             height: "100%",
             borderRadius: 12,
             background:
-              "linear-gradient(90deg, #065f46 0%, #047857 40%, #34d399 70%, #047857 100%)",
-            boxShadow: "0 0 16px rgba(4, 120, 87, 0.25)",
+              "linear-gradient(90deg, #1d4ed8 0%, #2563eb 40%, #60a5fa 70%, #2563eb 100%)",
+            boxShadow: "0 0 16px rgba(37, 99, 235, 0.25)",
           }}
         />
 
@@ -960,7 +960,7 @@ export default function WorkflowSection() {
         sx={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(4, 120, 87, 0.03) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.03) 1px, transparent 0)`,
           backgroundSize: "48px 48px",
           pointerEvents: "none",
         }}
@@ -977,7 +977,7 @@ export default function WorkflowSection() {
             height: 500,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(4, 120, 87, 0.04) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(37, 99, 235, 0.04) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
@@ -990,7 +990,7 @@ export default function WorkflowSection() {
             height: 450,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(4, 120, 87, 0.03) 0%, transparent 70%)",
+              "radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%)",
             pointerEvents: "none",
           }}
         />
@@ -1004,7 +1004,7 @@ export default function WorkflowSection() {
             height: 700,
             borderRadius: "50%",
             background:
-              "radial-gradient(circle, rgba(4, 120, 87, 0.02) 0%, transparent 60%)",
+              "radial-gradient(circle, rgba(37, 99, 235, 0.02) 0%, transparent 60%)",
             pointerEvents: "none",
           }}
         />
@@ -1027,9 +1027,9 @@ export default function WorkflowSection() {
                   fontWeight: 700,
                   letterSpacing: "0.08em",
                   fontSize: "0.75rem",
-                  background: "rgba(4, 120, 87, 0.08)",
-                  color: "#047857",
-                  border: "1px solid rgba(4, 120, 87, 0.18)",
+                  background: "rgba(37, 99, 235, 0.08)",
+                  color: "#2563eb",
+                  border: "1px solid rgba(37, 99, 235, 0.18)",
                 }}
               />
             </motion.div>
@@ -1046,7 +1046,7 @@ export default function WorkflowSection() {
                 component="span"
                 sx={{
                   background:
-                    "linear-gradient(135deg, #047857 0%, #34d399 50%, #047857 100%)",
+                    "linear-gradient(135deg, #2563eb 0%, #60a5fa 50%, #2563eb 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -1079,7 +1079,7 @@ export default function WorkflowSection() {
               style={{
                 height: 3,
                 borderRadius: 2,
-                background: "linear-gradient(90deg, #047857, #34d399)",
+                background: "linear-gradient(90deg, #2563eb, #60a5fa)",
                 margin: "24px auto 0",
               }}
             />
