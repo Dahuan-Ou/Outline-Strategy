@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* ── Premium Navy & Emerald Palette ── */
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #0f172a;
-  --primary-light: #1e293b;
-  --primary-dark: #020617;
-  --accent: #2563eb;
-  --accent-light: #60a5fa;
-  --accent-dark: #1d4ed8;
-  --secondary: #f1f5f9;
-  --surface: #e2e8f0;
-  --muted: #64748b;
-  --warm-gray: #94a3b8;
+  /* ── Premium Silver & Platinum Palette ── */
+  --background: #F8F9FA;
+  --foreground: #18181B;
+  --primary: #18181B;
+  --primary-light: #27272A;
+  --primary-dark: #09090B;
+  --accent: #94A3B8;
+  --accent-light: #B8C4D4;
+  --accent-dark: #64748B;
+  --secondary: #F1F3F5;
+  --surface: #E5E7EB;
+  --muted: #6B7280;
+  --warm-gray: #9CA3AF;
 }
 
 @theme inline {
@@ -28,8 +28,8 @@
   --color-secondary: var(--secondary);
   --color-surface: var(--surface);
   --color-muted: var(--muted);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-dm-serif);
 }
 
 * {
@@ -67,7 +67,7 @@ body {
   background: var(--muted);
 }
 
-/* Gradient text — emerald */
+/* Gradient text — silver */
 .gradient-text {
   background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, var(--accent) 100%);
   -webkit-background-clip: text;
@@ -83,9 +83,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-/* Animated gradient — deep navy luxury */
+/* Animated gradient — deep charcoal luxury */
 .animated-gradient {
-  background: linear-gradient(-45deg, #0f172a, #020617, #0c1524, #1e293b);
+  background: linear-gradient(-45deg, #18181B, #09090B, #1F1F24, #27272A);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
 }
@@ -102,8 +102,8 @@ body {
   66% { transform: translateY(10px) rotate(-3deg); }
 }
 
-/* Pulse glow — emerald */
+/* Pulse glow — silver */
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(37, 99, 235, 0.4); }
+  0%, 100% { box-shadow: 0 0 20px rgba(148, 163, 184, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(148, 163, 184, 0.4); }
 }

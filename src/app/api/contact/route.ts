@@ -23,18 +23,18 @@ function buildEmailHtml(data: ContactFormData): string {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8fafc; padding: 40px 20px;">
+<body style="margin: 0; padding: 0; background-color: #F8F9FA; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #F8F9FA; padding: 40px 20px;">
     <tr>
       <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);">
+        <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(24, 24, 27, 0.08);">
           <!-- Header -->
           <tr>
-            <td style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 32px 40px;">
+            <td style="background: linear-gradient(135deg, #18181B 0%, #27272A 100%); padding: 32px 40px;">
               <h1 style="margin: 0; color: #ffffff; font-size: 20px; font-weight: 700;">
                 New Contact Form Submission
               </h1>
-              <p style="margin: 8px 0 0; color: #94a3b8; font-size: 14px;">
+              <p style="margin: 8px 0 0; color: #9CA3AF; font-size: 14px;">
                 Received from raveena.com
               </p>
             </td>
@@ -45,27 +45,27 @@ function buildEmailHtml(data: ContactFormData): string {
             <td style="padding: 40px;">
               <table width="100%" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
-                    <span style="color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Name</span><br />
-                    <span style="color: #0f172a; font-size: 16px; font-weight: 500;">${escapeHtml(firstName)} ${escapeHtml(lastName)}</span>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #F1F3F5;">
+                    <span style="color: #6B7280; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Name</span><br />
+                    <span style="color: #18181B; font-size: 16px; font-weight: 500;">${escapeHtml(firstName)} ${escapeHtml(lastName)}</span>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
-                    <span style="color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Email</span><br />
-                    <a href="mailto:${escapeHtml(email)}" style="color: #2563eb; font-size: 16px; font-weight: 500; text-decoration: none;">${escapeHtml(email)}</a>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #F1F3F5;">
+                    <span style="color: #6B7280; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Email</span><br />
+                    <a href="mailto:${escapeHtml(email)}" style="color: #94A3B8; font-size: 16px; font-weight: 500; text-decoration: none;">${escapeHtml(email)}</a>
                   </td>
                 </tr>
                 <tr>
-                  <td style="padding: 12px 0; border-bottom: 1px solid #f1f5f9;">
-                    <span style="color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Company</span><br />
-                    <span style="color: #0f172a; font-size: 16px; font-weight: 500;">${escapeHtml(company)}</span>
+                  <td style="padding: 12px 0; border-bottom: 1px solid #F1F3F5;">
+                    <span style="color: #6B7280; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Company</span><br />
+                    <span style="color: #18181B; font-size: 16px; font-weight: 500;">${escapeHtml(company)}</span>
                   </td>
                 </tr>
                 <tr>
                   <td style="padding: 12px 0;">
-                    <span style="color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Project Details</span><br />
-                    <p style="color: #0f172a; font-size: 15px; line-height: 1.7; margin: 8px 0 0; white-space: pre-wrap;">${escapeHtml(message)}</p>
+                    <span style="color: #6B7280; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Project Details</span><br />
+                    <p style="color: #18181B; font-size: 15px; line-height: 1.7; margin: 8px 0 0; white-space: pre-wrap;">${escapeHtml(message)}</p>
                   </td>
                 </tr>
               </table>
@@ -74,9 +74,9 @@ function buildEmailHtml(data: ContactFormData): string {
 
           <!-- Footer -->
           <tr>
-            <td style="background-color: #f8fafc; padding: 20px 40px; border-top: 1px solid #e2e8f0;">
-              <p style="margin: 0; color: #94a3b8; font-size: 12px;">
-                This email was sent from the Raveena website contact form. Reply directly to respond to ${escapeHtml(firstName)}.
+            <td style="background-color: #F8F9FA; padding: 20px 40px; border-top: 1px solid #E5E7EB;">
+              <p style="margin: 0; color: #9CA3AF; font-size: 12px;">
+                This email was sent from the Outline Strategy website contact form. Reply directly to respond to ${escapeHtml(firstName)}.
               </p>
             </td>
           </tr>
@@ -179,7 +179,7 @@ export async function POST(
     // Once you verify a custom domain in Resend, update `from` and add extra
     // recipients (e.g. raveena.r.rajput@gmail.com) back to the `to` array.
     const { error } = await resend.emails.send({
-      from: "Raveena Website <onboarding@resend.dev>",
+      from: "Outline Strategy Website <onboarding@resend.dev>",
       to: ["dahuan.ou@gmail.com"],
       replyTo: email,
       subject: `New Contact: ${firstName} ${lastName} from ${company}`,

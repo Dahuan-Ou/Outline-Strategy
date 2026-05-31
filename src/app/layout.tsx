@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import ThemeRegistry from "@/theme/ThemeRegistry";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmSerif = DM_Serif_Display({
+  variable: "--font-dm-serif",
+  weight: "400",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Raveena | Business Consulting & Digital Transformation",
+  title: "Outline Strategy | Business Process & Systems Advisory",
   description:
-    "Raveena empowers businesses through strategic consulting, intelligent automation, system integration, and cutting-edge digital solutions. Transform your operations and accelerate growth.",
+    "Outline Strategy helps service businesses design operational systems that work. Clear structure, connected data, and the visibility you need to make better decisions.",
   keywords: [
     "business consulting",
-    "digital transformation",
+    "operational design",
+    "systems architecture",
     "process automation",
-    "CRM implementation",
-    "system integration",
-    "web development",
+    "visibility reporting",
+    "digital transformation",
   ],
 };
 
@@ -35,9 +38,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${dmSerif.variable} antialiased`}
       >
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeRegistry>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ThemeRegistry>
       </body>
     </html>
   );

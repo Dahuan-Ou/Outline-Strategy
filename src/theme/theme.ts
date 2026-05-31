@@ -5,46 +5,58 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#0f172a",
-      light: "#1e293b",
-      dark: "#020617",
+      main: "#18181B",
+      light: "#27272A",
+      dark: "#09090B",
     },
     secondary: {
-      main: "#2563eb",
-      light: "#60a5fa",
-      dark: "#1d4ed8",
+      main: "#94A3B8",
+      light: "#B8C4D4",
+      dark: "#64748B",
     },
     background: {
-      default: "#f8fafc",
-      paper: "#f1f5f9",
+      default: "#F8F9FA",
+      paper: "#F1F3F5",
     },
     text: {
-      primary: "#0f172a",
-      secondary: "#64748b",
+      primary: "#18181B",
+      secondary: "#6B7280",
     },
   },
   typography: {
-    fontFamily: "var(--font-geist-sans), Arial, Helvetica, sans-serif",
+    fontFamily: "var(--font-inter), system-ui, sans-serif",
     h1: {
-      fontWeight: 700,
-      letterSpacing: "-0.03em",
-    },
-    h2: {
-      fontWeight: 700,
+      fontFamily: "var(--font-dm-serif), Georgia, serif",
+      fontWeight: 400,
       letterSpacing: "-0.02em",
     },
+    h2: {
+      fontFamily: "var(--font-dm-serif), Georgia, serif",
+      fontWeight: 400,
+      letterSpacing: "-0.01em",
+    },
     h3: {
-      fontWeight: 600,
+      fontFamily: "var(--font-dm-serif), Georgia, serif",
+      fontWeight: 400,
       letterSpacing: "-0.01em",
     },
     h4: {
-      fontWeight: 600,
+      fontFamily: "var(--font-dm-serif), Georgia, serif",
+      fontWeight: 400,
     },
     h5: {
-      fontWeight: 500,
+      fontFamily: "var(--font-dm-serif), Georgia, serif",
+      fontWeight: 400,
     },
     h6: {
-      fontWeight: 500,
+      fontFamily: "var(--font-dm-serif), Georgia, serif",
+      fontWeight: 400,
+    },
+    body1: {
+      letterSpacing: "0.01em",
+    },
+    body2: {
+      letterSpacing: "0.01em",
     },
   },
   shape: {
@@ -65,7 +77,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 16,
-          boxShadow: "0 4px 24px rgba(15, 23, 42, 0.04)",
+          boxShadow: "0 4px 24px rgba(24, 24, 27, 0.04)",
         },
       },
     },

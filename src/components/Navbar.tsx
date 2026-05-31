@@ -17,18 +17,21 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "#hero" },
-  { label: "Services", href: "#services" },
-  { label: "Process", href: "#workflow" },
-  { label: "Why Us", href: "#why-us" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Services", href: "/services" },
+  { label: "Approach", href: "/process" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,14 +41,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
-    setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <>
       <AppBar
@@ -53,12 +48,12 @@ export default function Navbar() {
         elevation={scrolled ? 1 : 0}
         sx={{
           background: scrolled
-            ? "rgba(248, 250, 252, 0.92)"
+            ? "rgba(248, 249, 250, 0.92)"
             : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
           borderBottom: scrolled
-            ? "1px solid rgba(15, 23, 42, 0.06)"
+            ? "1px solid rgba(24, 24, 27, 0.06)"
             : "none",
         }}
       >
@@ -76,42 +71,27 @@ export default function Navbar() {
               transition={{ duration: 0.6 }}
             >
               <Box
-                onClick={() => handleNavClick("#hero")}
+                component={Link}
+                href="/"
                 sx={{
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   gap: 1,
+                  textDecoration: "none",
                 }}
               >
-                <Box
-                  sx={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: "10px",
-                    background:
-                      "linear-gradient(135deg, #0f172a 0%, #2563eb 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#fff",
-                    fontWeight: 800,
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  R
-                </Box>
                 <Box
                   component="span"
                   sx={{
                     fontSize: "1.3rem",
-                    fontWeight: 700,
-                    color: scrolled ? "#0f172a" : "#fff",
-                    transition: "color 0.4s ease",
+                    fontFamily: "var(--font-dm-serif), Georgia, serif",
+                    fontWeight: 400,
+                    color: "#18181B",
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  Raveena
+                  Outline Strategy
                 </Box>
               </Box>
             </motion.div>
@@ -124,62 +104,63 @@ export default function Navbar() {
                 gap: 1,
               }}
             >
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
-                  <Button
-                    onClick={() => handleNavClick(item.href)}
-                    sx={{
-                      color: scrolled ? "#475569" : "rgba(255,255,255,0.85)",
-                      fontWeight: 500,
-                      fontSize: "0.95rem",
-                      px: 2,
-                      py: 1,
-                      borderRadius: "50px",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        background: scrolled
-                          ? "rgba(15, 23, 42, 0.05)"
-                          : "rgba(255, 255, 255, 0.12)",
-                        color: scrolled ? "#0f172a" : "#fff",
-                      },
-                    }}
+              {navItems.map((item, index) => {
+                const isActive = pathname === item.href;
+                return (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
-                    {item.label}
-                  </Button>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
-              >
-                <Button
-                  variant="contained"
-                  onClick={() => handleNavClick("#contact")}
-                  sx={{
-                    ml: 1,
-                    background:
-                      "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-                    color: "#fff",
-                    fontWeight: 600,
-                    px: 3,
-                    "&:hover": {
-                      background:
-                        "linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)",
-                      transform: "translateY(-1px)",
-                      boxShadow: "0 4px 15px rgba(37, 99, 235, 0.35)",
-                    },
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  Get Started
-                </Button>
-              </motion.div>
+                    <Button
+                      component={Link}
+                      href={item.href}
+                      sx={{
+                        color:
+                          true
+                            ? isActive
+                              ? "#18181B"
+                              : "#4B5563"
+                            : isActive
+                              ? "#fff"
+                              : "rgba(255,255,255,0.85)",
+                        fontWeight: isActive ? 600 : 500,
+                        fontSize: "0.82rem",
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        px: 2,
+                        py: 1,
+                        borderRadius: "50px",
+                        transition: "all 0.3s ease",
+                        position: "relative",
+                        "&::after": isActive
+                          ? {
+                              content: '""',
+                              position: "absolute",
+                              bottom: 4,
+                              left: "30%",
+                              right: "30%",
+                              height: 2,
+                              borderRadius: 1,
+                              background:
+                                "linear-gradient(90deg, #94A3B8, #B8C4D4)",
+                            }
+                          : {},
+                        "&:hover": {
+                          background:
+                            true
+                              ? "rgba(24, 24, 27, 0.05)"
+                              : "rgba(255, 255, 255, 0.12)",
+                          color: true ? "#18181B" : "#fff",
+                        },
+                      }}
+                    >
+                      {item.label}
+                    </Button>
+                  </motion.div>
+                );
+              })}
             </Box>
 
             {/* Mobile Menu Button */}
@@ -187,7 +168,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(true)}
               sx={{
                 display: { md: "none" },
-                color: scrolled ? "#0f172a" : "#fff",
+                color: true ? "#18181B" : "#fff",
               }}
             >
               <MenuIcon />
@@ -208,7 +189,7 @@ export default function Navbar() {
                 width: "100%",
                 maxWidth: 360,
                 background:
-                  "linear-gradient(180deg, #0f172a 0%, #020617 100%)",
+                  "linear-gradient(180deg, #18181B 0%, #09090B 100%)",
                 color: "#fff",
               },
             }}
@@ -222,60 +203,46 @@ export default function Navbar() {
               </IconButton>
             </Box>
             <List sx={{ px: 2 }}>
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <ListItem disablePadding sx={{ mb: 1 }}>
-                    <ListItemButton
-                      onClick={() => handleNavClick(item.href)}
-                      sx={{
-                        borderRadius: 2,
-                        py: 1.5,
-                        "&:hover": {
-                          background: "rgba(37, 99, 235, 0.1)",
-                        },
-                      }}
-                    >
-                      <ListItemText
-                        primary={item.label}
-                        primaryTypographyProps={{
-                          fontSize: "1.1rem",
-                          fontWeight: 500,
+              {navItems.map((item, index) => {
+                const isActive = pathname === item.href;
+                return (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <ListItem disablePadding sx={{ mb: 1 }}>
+                      <ListItemButton
+                        component={Link}
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        sx={{
+                          borderRadius: 2,
+                          py: 1.5,
+                          background: isActive
+                            ? "rgba(148, 163, 184, 0.15)"
+                            : "transparent",
+                          borderLeft: isActive
+                            ? "3px solid #94A3B8"
+                            : "3px solid transparent",
+                          "&:hover": {
+                            background: "rgba(148, 163, 184, 0.1)",
+                          },
                         }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-              >
-                <Button
-                  fullWidth
-                  variant="contained"
-                  onClick={() => handleNavClick("#contact")}
-                  sx={{
-                    mt: 2,
-                    background:
-                      "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-                    color: "#fff",
-                    fontWeight: 600,
-                    py: 1.5,
-                    "&:hover": {
-                      background:
-                        "linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)",
-                    },
-                  }}
-                >
-                  Get Started
-                </Button>
-              </motion.div>
+                      >
+                        <ListItemText
+                          primary={item.label}
+                          primaryTypographyProps={{
+                            fontSize: "1.1rem",
+                            fontWeight: isActive ? 700 : 500,
+                          }}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  </motion.div>
+                );
+              })}
             </List>
           </Drawer>
         )}

@@ -1,829 +1,527 @@
 "use client";
 
-import { Box, Container, Typography, Button, Stack } from "@mui/material";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { useEffect, useState } from "react";
+import { Box, Container, Typography, Button, Grid } from "@mui/material";
+import { motion } from "framer-motion";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-
-/* ─── Seeded PRNG for deterministic values (server === client) ─── */
-function seededRandom(seed: number): () => number {
-  let s = seed;
-  return () => {
-    s = (s * 16807 + 0) % 2147483647;
-    return (s - 1) / 2147483646;
-  };
-}
-
-/* ─── Particle Field (deterministic) ─── */
-const rng = seededRandom(42);
-const particles = Array.from({ length: 35 }, (_, i) => ({
-  id: i,
-  x: Math.round(rng() * 10000) / 100,
-  y: Math.round(rng() * 10000) / 100,
-  size: Math.round((rng() * 3 + 1) * 100) / 100,
-  duration: Math.round((rng() * 15 + 15) * 100) / 100,
-  delay: Math.round(rng() * 500) / 100,
-}));
-
-/* ─── Connection Lines (network mesh) ─── */
-const networkNodes = [
-  { x: 15, y: 20 },
-  { x: 35, y: 12 },
-  { x: 55, y: 25 },
-  { x: 75, y: 15 },
-  { x: 90, y: 30 },
-  { x: 25, y: 50 },
-  { x: 50, y: 55 },
-  { x: 70, y: 45 },
-  { x: 85, y: 60 },
-  { x: 10, y: 75 },
-  { x: 40, y: 80 },
-  { x: 65, y: 72 },
-  { x: 88, y: 82 },
-  { x: 20, y: 90 },
-  { x: 55, y: 92 },
-];
-
-const connections = [
-  [0, 1], [1, 2], [2, 3], [3, 4],
-  [0, 5], [1, 6], [2, 7], [3, 8],
-  [5, 6], [6, 7], [7, 8],
-  [5, 9], [6, 10], [7, 11], [8, 12],
-  [9, 10], [10, 11], [11, 12],
-  [9, 13], [10, 14], [12, 14],
-];
-
-/* ─── Animated Counter ─── */
-function AnimatedStatValue({ value }: { value: string }) {
-  const numericPart = parseInt(value);
-  const suffix = value.replace(/[0-9]/g, "");
-  const motionVal = useMotionValue(0);
-  const rounded = useTransform(motionVal, (v) => Math.round(v));
-  const [displayVal, setDisplayVal] = useState(0);
-
-  useEffect(() => {
-    const controls = animate(motionVal, numericPart, {
-      duration: 2.5,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    });
-    const unsubscribe = rounded.on("change", (v) => setDisplayVal(v));
-    return () => {
-      controls.stop();
-      unsubscribe();
-    };
-  }, [motionVal, rounded, numericPart]);
-
-  return (
-    <Typography
-      variant="h4"
-      sx={{
-        color: "#60a5fa",
-        fontWeight: 700,
-        fontSize: { xs: "1.5rem", md: "2rem" },
-        fontVariantNumeric: "tabular-nums",
-      }}
-    >
-      {displayVal}
-      {suffix}
-    </Typography>
-  );
-}
-
-/* ─── Orbiting DNA Helix (pre-computed for hydration safety) ─── */
-const helixData = Array.from({ length: 14 }, (_, i) => {
-  const t = (i / 13) * Math.PI * 3;
-  const xOffset1 = Math.round(Math.cos(t) * 80 * 100) / 100;
-  const xOffset2 = Math.round(Math.cos(t + Math.PI) * 80 * 100) / 100;
-  const z1 = Math.round(Math.sin(t) * 40 * 100) / 100;
-  const z2 = Math.round(Math.sin(t + Math.PI) * 40 * 100) / 100;
-  const shadow1 = Math.round((0.3 + z1 / 100) * 1000) / 1000;
-  const shadow2 = Math.round((0.3 + z2 / 100) * 1000) / 1000;
-  const yPos = Math.round((i / 13) * 100 * 100) / 100;
-  return { id: i, xOffset1, xOffset2, z1, z2, shadow1, shadow2, yPos };
-});
-
-function DNAHelix() {
-  return (
-    <Box
-      sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: 320,
-        height: 320,
-      }}
-    >
-      {/* Rotating container */}
-      <motion.div
-        animate={{ rotateY: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        style={{
-          width: "100%",
-          height: "100%",
-          position: "relative",
-          transformStyle: "preserve-3d",
-          perspective: 600,
-        }}
-      >
-        {helixData.map((point) => (
-          <Box key={point.id} sx={{ position: "absolute", width: "100%", top: `${point.yPos}%` }}>
-            {/* Strand 1 dot */}
-            <motion.div
-              animate={{
-                opacity: [0.3, 0.8, 0.3],
-                scale: [0.8, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 3,
-                delay: point.id * 0.2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              style={{
-                position: "absolute",
-                left: `calc(50% + ${point.xOffset1}px)`,
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#60a5fa",
-                boxShadow: `0 0 12px rgba(96, 165, 250, ${point.shadow1})`,
-                transform: `translateZ(${point.z1}px)`,
-              }}
-            />
-            {/* Strand 2 dot */}
-            <motion.div
-              animate={{
-                opacity: [0.2, 0.6, 0.2],
-                scale: [0.8, 1.1, 0.8],
-              }}
-              transition={{
-                duration: 3,
-                delay: point.id * 0.2 + 0.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              style={{
-                position: "absolute",
-                left: `calc(50% + ${point.xOffset2}px)`,
-                width: 5,
-                height: 5,
-                borderRadius: "50%",
-                background: "#2563eb",
-                boxShadow: `0 0 10px rgba(37, 99, 235, ${point.shadow2})`,
-                transform: `translateZ(${point.z2}px)`,
-              }}
-            />
-            {/* Connecting bar */}
-            {point.id % 2 === 0 && (
-              <motion.div
-                animate={{ opacity: [0.05, 0.2, 0.05] }}
-                transition={{
-                  duration: 4,
-                  delay: point.id * 0.15,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                style={{
-                  position: "absolute",
-                  left: `calc(50% + ${Math.min(point.xOffset1, point.xOffset2)}px)`,
-                  width: Math.abs(point.xOffset1 - point.xOffset2),
-                  height: 1,
-                  background: "linear-gradient(90deg, #60a5fa, #2563eb)",
-                }}
-              />
-            )}
-          </Box>
-        ))}
-      </motion.div>
-    </Box>
-  );
-}
+import Link from "next/link";
 
 export default function HeroSection() {
-  const handleScroll = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <Box
-      id="hero"
-      sx={{
-        position: "relative",
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        overflow: "hidden",
-      }}
-      className="animated-gradient"
-    >
-      {/* ── Particle field ── */}
-      {particles.map((p) => (
-        <motion.div
-          key={p.id}
-          style={{
-            position: "absolute",
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-            borderRadius: "50%",
-            background: "rgba(96, 165, 250, 0.4)",
-          }}
-          animate={{
-            y: [0, -40, 20, 0],
-            x: [0, 20, -15, 0],
-            opacity: [0.2, 0.6, 0.2],
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      ))}
-
-      {/* ── Network mesh (SVG) ── */}
+    <Box id="hero">
+      {/* ══════ Hero ══════ */}
       <Box
-        component="svg"
         sx={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          pointerEvents: "none",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          background: "#F8F9FA",
+          position: "relative",
+          overflow: "hidden",
         }}
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
       >
-        {/* Connection lines */}
-        {connections.map(([a, b], i) => (
-          <motion.line
-            key={`line-${i}`}
-            x1={networkNodes[a].x}
-            y1={networkNodes[a].y}
-            x2={networkNodes[b].x}
-            y2={networkNodes[b].y}
-            stroke="rgba(37, 99, 235, 0.08)"
-            strokeWidth={0.15}
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 2, delay: i * 0.1, ease: "easeOut" }}
-          />
-        ))}
-
-        {/* Travelling pulses along connections */}
-        {connections.slice(0, 8).map(([a, b], i) => (
-          <motion.circle
-            key={`pulse-${i}`}
-            r={0.3}
-            fill="#60a5fa"
-            filter="url(#glow)"
-            initial={{ opacity: 0 }}
-            animate={{
-              cx: [networkNodes[a].x, networkNodes[b].x],
-              cy: [networkNodes[a].y, networkNodes[b].y],
-              opacity: [0, 0.8, 0],
-            }}
-            transition={{
-              duration: 3,
-              delay: i * 2 + 1,
-              repeat: Infinity,
-              repeatDelay: 8,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-
-        {/* Network nodes */}
-        {networkNodes.map((node, i) => (
-          <motion.circle
-            key={`node-${i}`}
-            cx={node.x}
-            cy={node.y}
-            r={0.4}
-            fill="rgba(96, 165, 250, 0.25)"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: i * 0.08 + 0.5 }}
-          />
-        ))}
-
-        {/* Glow filter */}
-        <defs>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="0.5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-      </Box>
-
-      {/* ── Grid pattern overlay ── */}
-      <Box
-        sx={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `
-            linear-gradient(rgba(37, 99, 235, 0.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(37, 99, 235, 0.025) 1px, transparent 1px)
-          `,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
-      {/* ── Scanning line ── */}
-      <motion.div
-        style={{
-          position: "absolute",
-          left: 0,
-          width: "100%",
-          height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.15), transparent)",
-          pointerEvents: "none",
-        }}
-        animate={{ top: ["0%", "100%"] }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
-
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+        {/* Subtle background texture */}
         <Box
           sx={{
-            display: "flex",
-            flexDirection: { xs: "column", lg: "row" },
-            alignItems: "center",
-            gap: { xs: 6, lg: 8 },
-            pt: { xs: 12, md: 0 },
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.04) 1px, transparent 0)`,
+            backgroundSize: "48px 48px",
+            pointerEvents: "none",
           }}
-        >
-          {/* Left content */}
-          <Box sx={{ flex: 1, maxWidth: { lg: "55%" } }}>
-            {/* Badge */}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            top: "30%",
+            right: "-10%",
+            width: 800,
+            height: 800,
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(148, 163, 184, 0.06) 0%, transparent 60%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+          <Box sx={{ maxWidth: 720, pt: { xs: 12, md: 4 } }}>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Box
-                sx={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 1,
-                  px: 2.5,
-                  py: 0.8,
-                  borderRadius: "50px",
-                  background: "rgba(37, 99, 235, 0.12)",
-                  border: "1px solid rgba(37, 99, 235, 0.25)",
-                  mb: 4,
-                }}
-              >
-                <motion.div
-                  animate={{
-                    scale: [1, 1.4, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  style={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: "50%",
-                    background: "#60a5fa",
-                    boxShadow: "0 0 8px rgba(96, 165, 250, 0.6)",
-                  }}
-                />
-                <Typography
-                  variant="body2"
-                  sx={{
-                    color: "#60a5fa",
-                    fontWeight: 600,
-                    fontSize: "0.85rem",
-                    letterSpacing: "0.08em",
-                  }}
-                >
-                  TRANSFORMING BUSINESSES DIGITALLY
-                </Typography>
-              </Box>
-            </motion.div>
-
-            {/* Heading with word-by-word animation */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15 }}
+              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <Typography
                 variant="h1"
                 sx={{
-                  color: "#fff",
+                  color: "#18181B",
                   fontSize: { xs: "2.5rem", sm: "3.2rem", md: "3.8rem" },
-                  lineHeight: 1.1,
+                  lineHeight: 1.15,
                   mb: 3,
                 }}
               >
-                {"Aligning Business Process with".split(" ").map((word, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.3 + i * 0.12,
-                      ease: [0.25, 0.46, 0.45, 0.94],
-                    }}
-                    style={{ display: "inline-block", marginRight: "0.3em" }}
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-                <br />
-                <Box component="span">
-                  {"Intelligent Systems".split(" ").map((word, i) => (
-                    <motion.span
-                      key={`grad-${i}`}
-                      initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      transition={{
-                        duration: 0.6,
-                        delay: 0.65 + i * 0.12,
-                        ease: [0.25, 0.46, 0.45, 0.94],
-                      }}
-                      style={{
-                        display: "inline-block",
-                        marginRight: "0.3em",
-                        background:
-                          "linear-gradient(135deg, #60a5fa 0%, #93c5fd 40%, #bfdbfe 60%, #60a5fa 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        backgroundClip: "text",
-                      }}
-                    >
-                      {word}
-                    </motion.span>
-                  ))}
-                </Box>
+                Operational Clarity for Service Businesses
               </Typography>
             </motion.div>
 
-            {/* Subtitle */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
             >
               <Typography
                 variant="h6"
                 sx={{
-                  color: "rgba(255, 255, 255, 0.6)",
+                  color: "#6B7280",
                   fontWeight: 400,
                   lineHeight: 1.7,
                   mb: 5,
-                  maxWidth: 520,
+                  maxWidth: 560,
                   fontSize: { xs: "1rem", md: "1.15rem" },
                 }}
               >
-                We help enterprises design clear, scalable processes — then align
-                systems and AI capabilities to deliver lasting operational advantage.
+                We help consultancies, agencies, and professional services firms
+                design operational systems that give them visibility over project
+                delivery, team capacity, and profitability.
               </Typography>
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.65 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
-                <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                  <Button
-                    variant="contained"
-                    size="large"
-                    endIcon={<ArrowForwardIcon />}
-                    onClick={() => handleScroll("#services")}
-                    sx={{
-                      background:
-                        "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
-                      color: "#fff",
-                      fontWeight: 600,
-                      px: 4,
-                      py: 1.8,
-                      fontSize: "1rem",
-                      "&:hover": {
-                        background:
-                          "linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)",
-                        boxShadow: "0 8px 30px rgba(37, 99, 235, 0.35)",
-                      },
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    Start the Conversation
-                  </Button>
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                  <Button
-                    variant="outlined"
-                    size="large"
-                    startIcon={<PlayArrowIcon />}
-                    onClick={() => handleScroll("#workflow")}
-                    sx={{
-                      color: "rgba(255,255,255,0.8)",
-                      borderColor: "rgba(255, 255, 255, 0.2)",
-                      fontWeight: 500,
-                      px: 4,
-                      py: 1.8,
-                      fontSize: "1rem",
-                      "&:hover": {
-                        borderColor: "rgba(37, 99, 235, 0.5)",
-                        background: "rgba(37, 99, 235, 0.08)",
-                        color: "#60a5fa",
-                      },
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    See Our Process
-                  </Button>
-                </motion.div>
-              </Stack>
-            </motion.div>
-
-            {/* Stats row with animated counters */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              <Stack
-                direction="row"
-                spacing={{ xs: 3, sm: 5 }}
+              <Button
+                component={Link}
+                href="/contact"
+                variant="contained"
+                size="large"
+                endIcon={<ArrowForwardIcon />}
                 sx={{
-                  mt: 6,
-                  pt: 4,
-                  borderTop: "1px solid rgba(255,255,255,0.08)",
+                  background: "#18181B",
+                  color: "#fff",
+                  fontWeight: 600,
+                  px: 4,
+                  py: 1.8,
+                  fontSize: "0.95rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  textDecoration: "none",
+                  borderRadius: "6px",
+                  "&:hover": {
+                    background: "#27272A",
+                    boxShadow: "0 4px 20px rgba(24, 24, 27, 0.15)",
+                  },
+                  transition: "all 0.3s ease",
                 }}
               >
-                {[
-                  { value: "150+", label: "Clients Served" },
-                  { value: "98%", label: "Satisfaction Rate" },
-                  { value: "12+", label: "Years of Expertise" },
-                ].map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + i * 0.15, duration: 0.6 }}
-                  >
-                    <Box>
-                      <AnimatedStatValue value={stat.value} />
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "rgba(255,255,255,0.4)",
-                          fontSize: { xs: "0.75rem", md: "0.85rem" },
-                        }}
-                      >
-                        {stat.label}
-                      </Typography>
-                    </Box>
-                  </motion.div>
-                ))}
-              </Stack>
+                Get in Touch
+              </Button>
             </motion.div>
           </Box>
+        </Container>
+      </Box>
 
-          {/* ── Right side - Advanced visual ── */}
-          <Box
-            sx={{
-              flex: 1,
-              display: { xs: "none", lg: "flex" },
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-              height: 480,
-            }}
+      {/* ══════ The Problem ══════ */}
+      <Box
+        sx={{
+          py: { xs: 10, md: 14 },
+          background: "#FFFFFF",
+          position: "relative",
+        }}
+      >
+        <Container maxWidth="lg">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              style={{ position: "relative", width: 440, height: 440 }}
+            <Typography
+              variant="overline"
+              sx={{
+                color: "#94A3B8",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                fontSize: "0.75rem",
+                mb: 3,
+                display: "block",
+              }}
             >
-              {/* Outer pulsing ring */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.05, 1],
-                  opacity: [0.15, 0.3, 0.15],
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                style={{
-                  position: "absolute",
-                  inset: -20,
-                  borderRadius: "50%",
-                  border: "1px solid rgba(96, 165, 250, 0.15)",
-                }}
-              />
+              The Problem
+            </Typography>
 
-              {/* Orbiting rings with dots */}
-              {[
-                { inset: 0, duration: 25, direction: 1, dotSize: 10, color: "#60a5fa" },
-                { inset: 35, duration: 18, direction: -1, dotSize: 8, color: "#2563eb" },
-                { inset: 70, duration: 30, direction: 1, dotSize: 6, color: "#60a5fa" },
-                { inset: 100, duration: 22, direction: -1, dotSize: 7, color: "#1d4ed8" },
-              ].map((ring, idx) => (
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#18181B",
+                fontSize: { xs: "1.6rem", md: "2.2rem" },
+                lineHeight: 1.3,
+                maxWidth: 640,
+                mb: 4,
+              }}
+            >
+              Most service businesses don&apos;t have an operations problem.
+              They have a visibility problem.
+            </Typography>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#6B7280",
+                lineHeight: 1.8,
+                fontSize: { xs: "1rem", md: "1.05rem" },
+                maxWidth: 720,
+                mb: 3,
+              }}
+            >
+              Work gets delivered. Clients get served. But behind the scenes,
+              information lives in spreadsheets, inboxes, and people&apos;s
+              heads. Nobody has a clear view of what&apos;s on track, who&apos;s
+              at capacity, or which projects are actually profitable.
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#6B7280",
+                lineHeight: 1.8,
+                fontSize: { xs: "1rem", md: "1.05rem" },
+                maxWidth: 720,
+              }}
+            >
+              We fix that. Not by adding more tools — but by designing the
+              operational structure your business is missing.
+            </Typography>
+          </motion.div>
+        </Container>
+      </Box>
+
+      {/* ══════ What We Do ══════ */}
+      <Box
+        sx={{
+          py: { xs: 10, md: 14 },
+          background: "#F8F9FA",
+          position: "relative",
+        }}
+      >
+        <Container maxWidth="lg">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                color: "#94A3B8",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                fontSize: "0.75rem",
+                mb: 4,
+                display: "block",
+              }}
+            >
+              What We Do
+            </Typography>
+          </motion.div>
+
+          <Grid container spacing={{ xs: 4, md: 0 }}>
+            {[
+              {
+                title: "Operational Design",
+                description:
+                  "We map how work flows through your business — from sales to delivery to reporting — and design a system that actually holds together.",
+              },
+              {
+                title: "Systems Architecture",
+                description:
+                  "We define what your tools need to do before you choose them. Structure first, software second.",
+              },
+              {
+                title: "Visibility & Control",
+                description:
+                  "We build the foundations for real-time clarity over project delivery, team capacity, and profitability.",
+              },
+            ].map((service, index) => (
+              <Grid key={service.title} size={{ xs: 12, md: 4 }}>
                 <motion.div
-                  key={`ring-${idx}`}
-                  style={{
-                    position: "absolute",
-                    inset: ring.inset,
-                    borderRadius: "50%",
-                    border: `1px solid rgba(37, 99, 235, ${0.06 + idx * 0.03})`,
-                  }}
-                  animate={{ rotate: ring.direction * 360 }}
-                  transition={{
-                    duration: ring.duration,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                >
-                  {/* Primary dot */}
-                  <motion.div
-                    animate={{
-                      boxShadow: [
-                        `0 0 4px ${ring.color}40`,
-                        `0 0 16px ${ring.color}80`,
-                        `0 0 4px ${ring.color}40`,
-                      ],
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    style={{
-                      position: "absolute",
-                      top: -ring.dotSize / 2,
-                      left: "50%",
-                      width: ring.dotSize,
-                      height: ring.dotSize,
-                      borderRadius: "50%",
-                      background: ring.color,
-                    }}
-                  />
-                  {/* Secondary dot (opposite side) */}
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      bottom: -ring.dotSize / 2 + 1,
-                      left: "50%",
-                      width: ring.dotSize - 2,
-                      height: ring.dotSize - 2,
-                      borderRadius: "50%",
-                      background: `${ring.color}60`,
-                    }}
-                  />
-                </motion.div>
-              ))}
-
-              {/* DNA Helix in center */}
-              <DNAHelix />
-
-              {/* Center core */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: 100,
-                  height: 100,
-                  borderRadius: "50%",
-                  background:
-                    "radial-gradient(circle, rgba(37, 99, 235, 0.2) 0%, transparent 70%)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <motion.div
-                  animate={{
-                    boxShadow: [
-                      "0 0 20px rgba(37, 99, 235, 0.2), inset 0 0 20px rgba(96, 165, 250, 0.1)",
-                      "0 0 50px rgba(37, 99, 235, 0.4), inset 0 0 30px rgba(96, 165, 250, 0.2)",
-                      "0 0 20px rgba(37, 99, 235, 0.2), inset 0 0 20px rgba(96, 165, 250, 0.1)",
-                    ],
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  style={{
-                    width: 72,
-                    height: 72,
-                    borderRadius: "50%",
-                    background:
-                      "linear-gradient(135deg, #2563eb 0%, #0f172a 50%, #1d4ed8 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    border: "1px solid rgba(96, 165, 250, 0.2)",
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: "#fff",
-                      fontWeight: 800,
-                      fontSize: "1.6rem",
-                      textShadow: "0 0 20px rgba(96, 165, 250, 0.5)",
-                    }}
-                  >
-                    R
-                  </Typography>
-                </motion.div>
-              </Box>
-
-              {/* Floating tech labels with connecting lines */}
-              {[
-                { top: "4%", left: "65%", label: "CRM", delay: 0 },
-                { top: "72%", left: "8%", label: "API", delay: 0.3 },
-                { top: "38%", right: "-5%", label: "AI", delay: 0.6 },
-                { top: "88%", right: "20%", label: "Cloud", delay: 0.9 },
-                { top: "18%", left: "5%", label: "Data", delay: 1.2 },
-                { bottom: "5%", left: "40%", label: "IoT", delay: 1.5 },
-              ].map((point, i) => (
-                <motion.div
-                  key={`label-${i}`}
-                  style={{
-                    position: "absolute",
-                    top: point.top,
-                    left: point.left,
-                    right: point.right,
-                    bottom: point.bottom,
-                  }}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                    y: [0, -8, 4, 0],
-                  }}
-                  transition={{
-                    opacity: { duration: 0.6, delay: 0.8 + point.delay },
-                    scale: { duration: 0.6, delay: 0.8 + point.delay },
-                    y: {
-                      duration: 5 + i,
-                      delay: i * 0.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    },
-                  }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
                 >
                   <Box
                     sx={{
-                      px: 2,
-                      py: 0.8,
-                      borderRadius: "8px",
-                      background: "rgba(37, 99, 235, 0.1)",
-                      border: "1px solid rgba(37, 99, 235, 0.25)",
-                      backdropFilter: "blur(12px)",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        background: "rgba(37, 99, 235, 0.2)",
-                        borderColor: "rgba(96, 165, 250, 0.5)",
-                        transform: "scale(1.1)",
+                      px: { md: 4 },
+                      py: { xs: 1, md: 0 },
+                      borderLeft: {
+                        xs: "none",
+                        md:
+                          index > 0
+                            ? "1px solid #E5E7EB"
+                            : "none",
                       },
+                      borderTop: {
+                        xs:
+                          index > 0
+                            ? "1px solid #E5E7EB"
+                            : "none",
+                        md: "none",
+                      },
+                      pt: { xs: index > 0 ? 3 : 0, md: 0 },
                     }}
                   >
-                    <Typography
-                      variant="caption"
+                    <Box
                       sx={{
-                        color: "#60a5fa",
-                        fontWeight: 600,
-                        fontSize: "0.72rem",
-                        letterSpacing: "0.1em",
+                        width: 30,
+                        height: 2,
+                        background: "#94A3B8",
+                        mb: 3,
+                      }}
+                    />
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        color: "#18181B",
+                        fontSize: { xs: "1.2rem", md: "1.35rem" },
+                        mb: 2,
                       }}
                     >
-                      {point.label}
+                      {service.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        color: "#6B7280",
+                        lineHeight: 1.8,
+                        fontSize: "0.95rem",
+                      }}
+                    >
+                      {service.description}
                     </Typography>
                   </Box>
                 </motion.div>
-              ))}
-            </motion.div>
-          </Box>
-        </Box>
-      </Container>
+              </Grid>
+            ))}
+          </Grid>
 
-      {/* Bottom curve */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <Button
+              component={Link}
+              href="/services"
+              endIcon={<ArrowForwardIcon />}
+              sx={{
+                mt: 5,
+                color: "#94A3B8",
+                fontWeight: 600,
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                textDecoration: "none",
+                px: 0,
+                "&:hover": {
+                  background: "transparent",
+                  color: "#64748B",
+                },
+              }}
+            >
+              Explore Services
+            </Button>
+          </motion.div>
+        </Container>
+      </Box>
+
+      {/* ══════ Our Point of View ══════ */}
       <Box
         sx={{
-          position: "absolute",
-          bottom: -2,
-          left: 0,
-          width: "100%",
-          height: { xs: 40, md: 80 },
-          background: "#f8fafc",
-          clipPath: "ellipse(55% 100% at 50% 100%)",
+          py: { xs: 10, md: 14 },
+          background: "#FFFFFF",
+          position: "relative",
         }}
-      />
+      >
+        <Container maxWidth="lg">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <Typography
+              variant="overline"
+              sx={{
+                color: "#94A3B8",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                fontSize: "0.75rem",
+                mb: 1,
+                display: "block",
+              }}
+            >
+              Thinking
+            </Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#18181B",
+                fontSize: { xs: "1.6rem", md: "2.2rem" },
+                mb: { xs: 4, md: 6 },
+              }}
+            >
+              Our Point of View
+            </Typography>
+          </motion.div>
+
+          <Grid container spacing={{ xs: 4, md: 6 }}>
+            {[
+              {
+                label: "Problem",
+                title: "Most Service Businesses Run on Fragmented Systems",
+                description:
+                  "Spreadsheets, inboxes, and disconnected tools create blind spots. Work gets done, but nobody has the full picture.",
+              },
+              {
+                label: "Principle",
+                title: "Design the System Before Choosing the Tools",
+                description:
+                  "Buying software without a clear operational design leads to more complexity, not less.",
+              },
+              {
+                label: "Outcome",
+                title: "Clarity Over Delivery, Capacity, and Margin",
+                description:
+                  "When your operations are properly structured, the right information reaches the right people at the right time.",
+              },
+            ].map((item, index) => (
+              <Grid key={item.title} size={{ xs: 12, md: 4 }}>
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                >
+                  <Typography
+                    variant="overline"
+                    sx={{
+                      color: "#94A3B8",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      fontSize: "0.7rem",
+                      mb: 1.5,
+                      display: "block",
+                    }}
+                  >
+                    {item.label}
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      color: "#18181B",
+                      fontSize: { xs: "1.05rem", md: "1.15rem" },
+                      lineHeight: 1.4,
+                      mb: 1.5,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#6B7280",
+                      lineHeight: 1.8,
+                      fontSize: "0.95rem",
+                    }}
+                  >
+                    {item.description}
+                  </Typography>
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* ══════ CTA ══════ */}
+      <Box
+        sx={{
+          py: { xs: 10, md: 14 },
+          background: "#27272A",
+          position: "relative",
+        }}
+      >
+        <Container maxWidth="lg">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                color: "#fff",
+                fontSize: { xs: "1.6rem", md: "2.2rem" },
+                lineHeight: 1.3,
+                maxWidth: 560,
+                mb: 3,
+              }}
+            >
+              Ready to see how your operations should actually work?
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "rgba(255,255,255,0.6)",
+                lineHeight: 1.8,
+                fontSize: { xs: "1rem", md: "1.05rem" },
+                maxWidth: 560,
+                mb: 4,
+              }}
+            >
+              We work with a small number of clients at a time. If you&apos;re
+              looking for clarity over delivery, capacity, or profitability —
+              let&apos;s talk.
+            </Typography>
+            <Button
+              component={Link}
+              href="/contact"
+              variant="outlined"
+              size="large"
+              endIcon={<ArrowForwardIcon />}
+              sx={{
+                color: "#fff",
+                borderColor: "rgba(255,255,255,0.3)",
+                fontWeight: 600,
+                px: 4,
+                py: 1.5,
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
+                textDecoration: "none",
+                borderRadius: "6px",
+                "&:hover": {
+                  borderColor: "rgba(255,255,255,0.6)",
+                  background: "rgba(255,255,255,0.05)",
+                },
+                transition: "all 0.3s ease",
+              }}
+            >
+              Start a Conversation
+            </Button>
+          </motion.div>
+        </Container>
+      </Box>
     </Box>
   );
 }

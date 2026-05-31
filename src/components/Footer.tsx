@@ -1,37 +1,13 @@
 "use client";
 
-import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  IconButton,
-  Stack,
-} from "@mui/material";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import XIcon from "@mui/icons-material/X";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import { Box, Container, Typography, Grid, Stack } from "@mui/material";
+import Link from "next/link";
 
-const footerLinks = [
-  {
-    title: "Services",
-    links: [
-      "Business Consulting",
-      "Process Automation",
-      "Digital Health Check",
-      "System Integration",
-      "CRM Implementation",
-      "Web & App Development",
-    ],
-  },
-  {
-    title: "Company",
-    links: ["About Us", "Careers", "Case Studies", "Blog", "Contact"],
-  },
-  {
-    title: "Resources",
-    links: ["Documentation", "Support", "Privacy Policy", "Terms of Service"],
-  },
+const navLinks = [
+  { label: "Services", href: "/services" },
+  { label: "Approach", href: "/process" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
@@ -39,7 +15,7 @@ export default function Footer() {
     <Box
       component="footer"
       sx={{
-        background: "linear-gradient(180deg, #0f172a 0%, #020617 100%)",
+        background: "#18181B",
         color: "#fff",
         pt: { xs: 8, md: 10 },
         pb: 4,
@@ -48,116 +24,90 @@ export default function Footer() {
       <Container maxWidth="lg">
         <Grid container spacing={4} sx={{ mb: 6 }}>
           {/* Brand */}
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Box sx={{ mb: 3 }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
-                <Box
-                  sx={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: "10px",
-                    background:
-                      "linear-gradient(135deg, #0f172a 0%, #2563eb 100%)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#fff",
-                    fontWeight: 800,
-                    fontSize: "1.1rem",
-                  }}
-                >
-                  R
-                </Box>
-                <Typography
-                  variant="h6"
-                  sx={{ fontWeight: 700, color: "#fff" }}
-                >
-                  Raveena
-                </Typography>
-              </Box>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "rgba(255,255,255,0.5)",
-                  lineHeight: 1.7,
-                  maxWidth: 300,
-                }}
-              >
-                Empowering businesses through strategic consulting, intelligent
-                automation, and cutting-edge technology solutions.
-              </Typography>
-            </Box>
+          <Grid size={{ xs: 12, md: 5 }}>
+            <Typography
+              variant="h6"
+              sx={{ fontFamily: "var(--font-dm-serif), Georgia, serif", fontWeight: 400, color: "#fff", mb: 2 }}
+            >
+              Outline Strategy
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "rgba(255,255,255,0.5)",
+                lineHeight: 1.7,
+                maxWidth: 340,
+              }}
+            >
+              Operational clarity for service businesses. We design the systems
+              that give you visibility over delivery, capacity, and
+              profitability.
+            </Typography>
+          </Grid>
 
-            {/* Social icons */}
-            <Stack direction="row" spacing={1}>
-              {[
-                { icon: <LinkedInIcon />, label: "LinkedIn" },
-                { icon: <XIcon />, label: "X" },
-                { icon: <GitHubIcon />, label: "GitHub" },
-              ].map((social) => (
-                <IconButton
-                  key={social.label}
-                  aria-label={social.label}
+          {/* Navigate */}
+          <Grid size={{ xs: 6, md: 3 }}>
+            <Typography
+              variant="subtitle2"
+              sx={{
+                color: "#fff",
+                fontWeight: 700,
+                mb: 2.5,
+                fontSize: "0.85rem",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+              }}
+            >
+              Navigate
+            </Typography>
+            <Stack spacing={1.5}>
+              {navLinks.map((link) => (
+                <Typography
+                  key={link.label}
+                  variant="body2"
+                  component={Link}
+                  href={link.href}
                   sx={{
-                    color: "rgba(255,255,255,0.5)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    borderRadius: "10px",
+                    color: "rgba(255,255,255,0.45)",
+                    textDecoration: "none",
+                    fontSize: "0.9rem",
+                    transition: "all 0.2s ease",
                     "&:hover": {
-                      color: "#60a5fa",
-                      borderColor: "rgba(37, 99, 235, 0.3)",
-                      background: "rgba(37, 99, 235, 0.08)",
+                      color: "rgba(255,255,255,0.8)",
                     },
-                    transition: "all 0.3s ease",
                   }}
                 >
-                  {social.icon}
-                </IconButton>
+                  {link.label}
+                </Typography>
               ))}
             </Stack>
           </Grid>
 
-          {/* Links */}
-          {footerLinks.map((section) => (
-            <Grid
-              key={section.title}
-              size={{ xs: 6, sm: 4, md: 2.5 }}
+          {/* Connect */}
+          <Grid size={{ xs: 6, md: 3 }}>
+            <Typography
+              variant="subtitle2"
+              sx={{
+                color: "#fff",
+                fontWeight: 700,
+                mb: 2.5,
+                fontSize: "0.85rem",
+                letterSpacing: "0.05em",
+                textTransform: "uppercase",
+              }}
             >
-              <Typography
-                variant="subtitle2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: 700,
-                  mb: 2.5,
-                  fontSize: "0.85rem",
-                  letterSpacing: "0.03em",
-                }}
-              >
-                {section.title}
-              </Typography>
-              <Stack spacing={1.5}>
-                {section.links.map((link) => (
-                  <Typography
-                    key={link}
-                    variant="body2"
-                    component="a"
-                    href="#"
-                    sx={{
-                      color: "rgba(255,255,255,0.45)",
-                      textDecoration: "none",
-                      fontSize: "0.85rem",
-                      transition: "all 0.2s ease",
-                      "&:hover": {
-                        color: "#60a5fa",
-                        paddingLeft: "4px",
-                      },
-                    }}
-                  >
-                    {link}
-                  </Typography>
-                ))}
-              </Stack>
-            </Grid>
-          ))}
+              Connect
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "rgba(255,255,255,0.45)",
+                fontSize: "0.9rem",
+              }}
+            >
+              hello@outlinestrategy.com
+            </Typography>
+          </Grid>
         </Grid>
 
         {/* Bottom bar */}
@@ -165,24 +115,14 @@ export default function Footer() {
           sx={{
             pt: 3,
             borderTop: "1px solid rgba(255,255,255,0.08)",
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 2,
           }}
         >
           <Typography
             variant="caption"
             sx={{ color: "rgba(255,255,255,0.3)", fontSize: "0.8rem" }}
           >
-            &copy; {new Date().getFullYear()} Raveena. All rights reserved.
-          </Typography>
-          <Typography
-            variant="caption"
-            sx={{ color: "rgba(255,255,255,0.3)", fontSize: "0.8rem" }}
-          >
-            Designed with purpose. Built with precision.
+            &copy; {new Date().getFullYear()} Outline Strategy. All rights
+            reserved.
           </Typography>
         </Box>
       </Container>

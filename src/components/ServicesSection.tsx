@@ -1,79 +1,87 @@
 "use client";
 
-import { useState } from "react";
 import {
   Box,
   Container,
   Typography,
-  Card,
-  CardContent,
   Chip,
   Grid,
+  Stack,
 } from "@mui/material";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
-import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
-import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
-import GroupsIcon from "@mui/icons-material/Groups";
-import DevicesIcon from "@mui/icons-material/Devices";
+import InsightsIcon from "@mui/icons-material/Insights";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AnimatedSection from "./AnimatedSection";
 
 const services = [
   {
-    icon: <BusinessCenterIcon sx={{ fontSize: 32 }} />,
-    title: "Process Architecture",
-    shortDesc: "Designing the operational blueprint that drives clarity, efficiency, and scale across your organisation.",
-    fullDesc:
-      "Description placeholder",
-    tags: ["Strategy", "Growth", "Market Analysis"],
-    color: "#2563eb",
-    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
+    icon: <AccountTreeIcon sx={{ fontSize: 36 }} />,
+    label: "Structure Before Software",
+    title: "Operational Design",
+    description:
+      "We work with leadership teams to map how work actually moves through the business — from client intake to project delivery to financial reporting. The result is a clear operational blueprint that removes ambiguity and creates accountability.",
+    deliverables: [
+      "End-to-end workflow mapping across teams",
+      "Identifying gaps, bottlenecks, and manual workarounds",
+      "Defining clear handoffs, ownership, and decision points",
+      "Standardising how projects are scoped, tracked, and closed",
+    ],
+    color: "#94A3B8",
+    gradient: "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 100%)",
   },
   {
-    icon: <SettingsSuggestIcon sx={{ fontSize: 32 }} />,
-    title: "Systems Alignment",
-    shortDesc: "Ensuring your technology ecosystem reflects — and reinforces — your business logic and workflows.",
-    fullDesc:
-      "Description placeholder",
-    tags: ["Automation", "Efficiency", "Workflow"],
-    color: "#2563eb",
-    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
+    icon: <SettingsSuggestIcon sx={{ fontSize: 36 }} />,
+    label: "Choosing Tools That Fit",
+    title: "Systems Architecture",
+    description:
+      "Most businesses pick tools before defining what they need. We reverse that. Once your operational design is clear, we define the system requirements — then help you select and configure the right tools to support them.",
+    deliverables: [
+      "Defining what your systems need to do, not just what's available",
+      "Evaluating your current tools against actual requirements",
+      "Designing integrations so data flows without manual effort",
+      "Creating a phased implementation plan that doesn't disrupt delivery",
+    ],
+    color: "#94A3B8",
+    gradient: "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 100%)",
   },
   {
-    icon: <HealthAndSafetyIcon sx={{ fontSize: 32 }} />,
-    title: "Intelligent Readiness",
-    shortDesc: "Preparing your processes and data foundations so AI and automation deliver real, measurable value.",
-    fullDesc:
-      "Descrption placeholder",
-    tags: ["Audit", "Security", "Assessment"],
-    color: "#2563eb",
-    gradient: "linear-gradient(135deg, #2563eb 0%, #60a5fa 100%)",
-  }, 
+    icon: <InsightsIcon sx={{ fontSize: 36 }} />,
+    label: "The Numbers That Matter",
+    title: "Visibility & Reporting",
+    description:
+      "You can't manage what you can't see. We design reporting structures that give you real-time clarity over project health, team utilisation, and profitability — without chasing people for updates.",
+    deliverables: [
+      "Defining the metrics that actually drive decisions",
+      "Building dashboards that reflect real operational data",
+      "Connecting delivery data to financial outcomes",
+      "Replacing status meetings with self-serve visibility",
+    ],
+    color: "#94A3B8",
+    gradient: "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 100%)",
+  },
 ];
 
-/* ── Floating decorative dots ── */
-const bgDots = [
-  { top: "8%", left: "5%", size: 6, opacity: 0.12, delay: 0 },
-  { top: "15%", right: "8%", size: 4, opacity: 0.1, delay: 0.5 },
-  { top: "45%", left: "3%", size: 5, opacity: 0.08, delay: 1 },
-  { top: "72%", right: "4%", size: 7, opacity: 0.1, delay: 1.5 },
-  { top: "85%", left: "12%", size: 4, opacity: 0.12, delay: 2 },
-];
-
-export default function ServicesSection() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+/* ── Individual Service Section ── */
+function ServiceSection({
+  service,
+  index,
+}: {
+  service: (typeof services)[0];
+  index: number;
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isReversed = index % 2 !== 0;
 
   return (
     <Box
-      id="services"
-      ref={sectionRef}
+      ref={ref}
       sx={{
-        py: { xs: 10, md: 14 },
-        background: "#fff",
+        py: { xs: 8, md: 12 },
+        background: index % 2 === 0 ? "#FFFFFF" : "#F8F9FA",
         position: "relative",
         overflow: "hidden",
       }}
@@ -83,346 +91,328 @@ export default function ServicesSection() {
         sx={{
           position: "absolute",
           inset: 0,
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.035) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.03) 1px, transparent 0)`,
           backgroundSize: "48px 48px",
           pointerEvents: "none",
         }}
       />
 
-      {/* ── Floating dots ── */}
-      {bgDots.map((dot, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={
-            isInView
-              ? {
-                  opacity: dot.opacity,
-                  scale: [1, 1.4, 1],
-                }
-              : {}
-          }
-          transition={{
-            opacity: { duration: 0.6, delay: dot.delay },
-            scale: { duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: dot.delay },
-          }}
-          style={{
-            position: "absolute",
-            top: dot.top,
-            left: dot.left,
-            right: dot.right,
-            width: dot.size,
-            height: dot.size,
-            borderRadius: "50%",
-            background: "#2563eb",
-            pointerEvents: "none",
-          }}
-        />
-      ))}
-
-      {/* ── Gradient corner accents ── */}
+      {/* ── Decorative radial glow ── */}
       <Box
         sx={{
           position: "absolute",
-          top: 0,
-          right: 0,
-          width: 400,
-          height: 400,
+          top: "50%",
+          left: isReversed ? "20%" : "80%",
+          transform: "translate(-50%, -50%)",
+          width: 500,
+          height: 500,
+          borderRadius: "50%",
           background:
-            "radial-gradient(circle at 100% 0%, rgba(37, 99, 235, 0.04) 0%, transparent 60%)",
-          pointerEvents: "none",
-        }}
-      />
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          width: 400,
-          height: 400,
-          background:
-            "radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.03) 0%, transparent 60%)",
+            "radial-gradient(circle, rgba(148, 163, 184, 0.04) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
 
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        {/* ── Section Header ── */}
-        <AnimatedSection>
-          <Box sx={{ textAlign: "center", mb: { xs: 6, md: 10 } }}>
+        <Grid
+          container
+          spacing={{ xs: 4, md: 8 }}
+          alignItems="center"
+          direction={isReversed ? "row-reverse" : "row"}
+        >
+          {/* ── Left: Content ── */}
+          <Grid size={{ xs: 12, md: 6 }}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <Chip
-                label="OUR SERVICES"
-                sx={{
-                  mb: 2,
-                  fontWeight: 700,
-                  letterSpacing: "0.08em",
-                  fontSize: "0.75rem",
-                  background: "rgba(37, 99, 235, 0.08)",
-                  color: "#2563eb",
-                  border: "1px solid rgba(37, 99, 235, 0.18)",
-                }}
-              />
-            </motion.div>
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: { xs: "2rem", md: "2.8rem" },
-                color: "#0f172a",
-                mb: 2,
+              initial={{ opacity: 0, x: isReversed ? 40 : -40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{
+                duration: 0.7,
+                ease: [0.25, 0.46, 0.45, 0.94],
               }}
             >
-              Solutions That{" "}
-              <Box
-                component="span"
-                sx={{
-                  background:
-                    "linear-gradient(135deg, #2563eb 0%, #60a5fa 50%, #2563eb 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Drive Results
-              </Box>
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#64748b",
-                maxWidth: 600,
-                mx: "auto",
-                fontSize: { xs: "1rem", md: "1.1rem" },
-                lineHeight: 1.7,
-              }}
-            >
-              We offer a comprehensive suite of services designed to transform
-              your operations, empower your teams, and accelerate your digital
-              journey.
-            </Typography>
-
-            {/* ── Decorative divider line ── */}
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: 80 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              style={{
-                height: 3,
-                borderRadius: 2,
-                background: "linear-gradient(90deg, #2563eb, #60a5fa)",
-                margin: "24px auto 0",
-              }}
-            />
-          </Box>
-        </AnimatedSection>
-
-        {/* ── Service Cards ── */}
-        <Grid container spacing={3}>
-          {services.map((service, index) => (
-            <Grid key={service.title} size={{ xs: 12, sm: 6, lg: 4 }}>
+              {/* Icon */}
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94],
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <Box
+                  sx={{
+                    width: 64,
+                    height: 64,
+                    borderRadius: "16px",
+                    background: `${service.color}10`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: service.color,
+                    mb: 3,
+                    transition: "all 0.4s ease",
+                    "&:hover": {
+                      background: service.gradient,
+                      color: "#fff",
+                      boxShadow: `0 8px 24px ${service.color}30`,
+                      transform: "scale(1.05)",
+                    },
+                  }}
+                >
+                  {service.icon}
+                </Box>
+              </motion.div>
+
+              {/* Label */}
+              <Typography
+                variant="overline"
+                sx={{
+                  color: service.color,
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  fontSize: "0.75rem",
+                  mb: 1,
+                  display: "block",
                 }}
               >
-                <motion.div
-                  whileHover={{ y: -10, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  <Card
-                    onClick={() =>
-                      setExpandedIndex(
-                        expandedIndex === index ? null : index
-                      )
-                    }
-                    sx={{
-                      height: "100%",
-                      cursor: "pointer",
-                      position: "relative",
-                      overflow: "visible",
-                      border: "1px solid",
-                      borderColor:
-                        expandedIndex === index
-                          ? `${service.color}40`
-                          : "rgba(15, 23, 42, 0.06)",
-                      boxShadow:
-                        expandedIndex === index
-                          ? `0 20px 60px ${service.color}18`
-                          : "0 2px 12px rgba(15, 23, 42, 0.04)",
-                      transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                      "&:hover": {
-                        borderColor: `${service.color}35`,
-                        boxShadow: `0 16px 50px ${service.color}18`,
-                      },
-                    }}
-                  >
-                    {/* Top gradient bar — animated width */}
+                {service.label}
+              </Typography>
+
+              {/* Title */}
+              <Typography
+                variant="h3"
+                sx={{
+                  color: "#18181B",
+                  fontSize: { xs: "1.8rem", md: "2.3rem" },
+                  lineHeight: 1.2,
+                  mb: 2.5,
+                }}
+              >
+                {service.title}
+              </Typography>
+
+              {/* Description */}
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "#6B7280",
+                  lineHeight: 1.8,
+                  fontSize: { xs: "1rem", md: "1.05rem" },
+                  maxWidth: 520,
+                }}
+              >
+                {service.description}
+              </Typography>
+            </motion.div>
+          </Grid>
+
+          {/* ── Right: Deliverables ── */}
+          <Grid size={{ xs: 12, md: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, x: isReversed ? -40 : 40 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{
+                duration: 0.7,
+                delay: 0.2,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
+              <Box
+                sx={{
+                  p: { xs: 3, md: 4.5 },
+                  borderRadius: 4,
+                  background:
+                    index % 2 === 0
+                      ? "#F8F9FA"
+                      : "#FFFFFF",
+                  border: "1px solid rgba(24, 24, 27, 0.06)",
+                  boxShadow: "0 2px 16px rgba(24, 24, 27, 0.04)",
+                  transition: "all 0.4s ease",
+                  "&:hover": {
+                    boxShadow: `0 12px 40px ${service.color}12`,
+                    borderColor: `${service.color}20`,
+                  },
+                }}
+              >
+                {/* Top accent */}
+                <Box
+                  sx={{
+                    width: 40,
+                    height: 3,
+                    borderRadius: 2,
+                    background: service.gradient,
+                    mb: 3,
+                  }}
+                />
+
+                <Stack spacing={2.5}>
+                  {service.deliverables.map((item, i) => (
                     <motion.div
-                      initial={{ width: "30%" }}
-                      whileHover={{ width: "100%" }}
-                      transition={{ duration: 0.5, ease: "easeOut" }}
-                      style={{
-                        height: 4,
-                        background: service.gradient,
-                        borderRadius: "16px 16px 0 0",
+                      key={item}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{
+                        delay: 0.35 + i * 0.1,
+                        duration: 0.5,
+                        ease: [0.25, 0.46, 0.45, 0.94],
                       }}
-                    />
-
-                    <CardContent sx={{ p: { xs: 3, md: 3.5 } }}>
-                      {/* Icon */}
-                      <Box
-                        sx={{
-                          width: 56,
-                          height: 56,
-                          borderRadius: "14px",
-                          background: `${service.color}10`,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          color: service.color,
-                          mb: 2.5,
-                          transition: "all 0.3s ease",
-                          ".MuiCard-root:hover &": {
-                            background: service.gradient,
-                            color: "#fff",
-                            boxShadow: `0 4px 20px ${service.color}30`,
-                          },
-                        }}
-                      >
-                        {service.icon}
-                      </Box>
-
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          fontWeight: 700,
-                          color: "#0f172a",
-                          mb: 1.5,
-                          fontSize: "1.1rem",
-                          lineHeight: 1.3,
-                        }}
-                      >
-                        {service.title}
-                      </Typography>
-
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: "#64748b",
-                          lineHeight: 1.6,
-                          mb: 2,
-                        }}
-                      >
-                        {service.shortDesc}
-                      </Typography>
-
-                      <AnimatePresence>
-                        {expandedIndex === index && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-                          >
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                color: "#475569",
-                                lineHeight: 1.7,
-                                mb: 2.5,
-                                pt: 1.5,
-                                borderTop: "1px solid rgba(37, 99, 235, 0.1)",
-                              }}
-                            >
-                              {service.fullDesc}
-                            </Typography>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      {/* Tags */}
-                      <Box
-                        sx={{ display: "flex", flexWrap: "wrap", gap: 0.8 }}
-                      >
-                        {service.tags.map((tag, tagIdx) => (
-                          <motion.div
-                            key={tag}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 + tagIdx * 0.05 + 0.3 }}
-                          >
-                            <Chip
-                              label={tag}
-                              size="small"
-                              sx={{
-                                fontSize: "0.7rem",
-                                fontWeight: 600,
-                                background: `${service.color}08`,
-                                color: service.color,
-                                border: `1px solid ${service.color}20`,
-                                height: 26,
-                                transition: "all 0.3s ease",
-                                "&:hover": {
-                                  background: `${service.color}15`,
-                                  borderColor: `${service.color}40`,
-                                },
-                              }}
-                            />
-                          </motion.div>
-                        ))}
-                      </Box>
-
-                      {/* Expand indicator */}
+                    >
                       <Box
                         sx={{
                           display: "flex",
-                          justifyContent: "center",
-                          mt: 2,
+                          alignItems: "flex-start",
+                          gap: 2,
                         }}
                       >
-                        <motion.div
-                          animate={{ rotate: expandedIndex === index ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
-                          style={{
-                            width: 24,
-                            height: 24,
-                            borderRadius: "50%",
-                            background:
-                              expandedIndex === index
-                                ? "rgba(37, 99, 235, 0.12)"
-                                : "rgba(15, 23, 42, 0.04)",
+                        <Box
+                          sx={{
+                            width: 28,
+                            height: 28,
+                            borderRadius: "8px",
+                            background: `${service.color}10`,
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontSize: "0.75rem",
-                            color:
-                              expandedIndex === index ? "#2563eb" : "#94a3b8",
-                            transition: "all 0.3s ease",
+                            flexShrink: 0,
+                            mt: 0.2,
                           }}
                         >
-                          ▼
-                        </motion.div>
+                          <ArrowForwardIcon
+                            sx={{
+                              fontSize: 14,
+                              color: service.color,
+                            }}
+                          />
+                        </Box>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            color: "#4B5563",
+                            fontSize: { xs: "0.92rem", md: "0.98rem" },
+                            lineHeight: 1.6,
+                            fontWeight: 500,
+                          }}
+                        >
+                          {item}
+                        </Typography>
                       </Box>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </motion.div>
-            </Grid>
-          ))}
+                    </motion.div>
+                  ))}
+                </Stack>
+              </Box>
+            </motion.div>
+          </Grid>
         </Grid>
       </Container>
+    </Box>
+  );
+}
+
+export default function ServicesSection() {
+  const sectionRef = useRef(null);
+
+  return (
+    <Box id="services" ref={sectionRef}>
+      {/* ── Section Header ── */}
+      <Box
+        sx={{
+          pt: { xs: 12, md: 16 },
+          pb: { xs: 4, md: 6 },
+          background: "#FFFFFF",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* ── Background pattern ── */}
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.035) 1px, transparent 0)`,
+            backgroundSize: "48px 48px",
+            pointerEvents: "none",
+          }}
+        />
+
+        <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+          <AnimatedSection>
+            <Box sx={{ textAlign: "center" }}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <Chip
+                  label="SERVICES"
+                  sx={{
+                    mb: 2,
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    fontSize: "0.75rem",
+                    background: "rgba(148, 163, 184, 0.08)",
+                    color: "#94A3B8",
+                    border: "1px solid rgba(148, 163, 184, 0.18)",
+                  }}
+                />
+              </motion.div>
+              <Typography
+                variant="h2"
+                sx={{
+                  fontSize: { xs: "2rem", md: "2.8rem" },
+                  color: "#18181B",
+                  mb: 2,
+                }}
+              >
+                What We{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    background:
+                      "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 50%, #94A3B8 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Do
+                </Box>
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "#6B7280",
+                  maxWidth: 680,
+                  mx: "auto",
+                  fontSize: { xs: "1rem", md: "1.1rem" },
+                  lineHeight: 1.7,
+                }}
+              >
+                We help service businesses design operational systems that work.
+                Not more tools. Not more complexity. Just clear structure,
+                connected data, and the visibility you need to make better
+                decisions.
+              </Typography>
+
+              {/* ── Decorative divider line ── */}
+              <motion.div
+                initial={{ width: 0 }}
+                whileInView={{ width: 80 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                style={{
+                  height: 3,
+                  borderRadius: 2,
+                  background: "linear-gradient(90deg, #94A3B8, #B8C4D4)",
+                  margin: "24px auto 0",
+                }}
+              />
+            </Box>
+          </AnimatedSection>
+        </Container>
+      </Box>
+
+      {/* ── Service Sections ── */}
+      {services.map((service, index) => (
+        <ServiceSection key={service.title} service={service} index={index} />
+      ))}
     </Box>
   );
 }

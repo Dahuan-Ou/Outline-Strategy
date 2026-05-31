@@ -10,7 +10,7 @@ export default function OurPositionSection() {
       id="our-position"
       sx={{
         py: { xs: 10, md: 14 },
-        background: "#fff",
+        background: "#FFFFFF",
         position: "relative",
         overflow: "hidden",
       }}
@@ -26,7 +26,7 @@ export default function OurPositionSection() {
           height: 800,
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%)",
+            "radial-gradient(circle, rgba(148, 163, 184, 0.03) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -37,7 +37,7 @@ export default function OurPositionSection() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "radial-gradient(circle, rgba(15, 23, 42, 0.04) 1px, transparent 1px)",
+            "radial-gradient(circle, rgba(24, 24, 27, 0.04) 1px, transparent 1px)",
           backgroundSize: "24px 24px",
           pointerEvents: "none",
         }}
@@ -59,9 +59,9 @@ export default function OurPositionSection() {
                   fontWeight: 700,
                   letterSpacing: "0.08em",
                   fontSize: "0.75rem",
-                  background: "rgba(37, 99, 235, 0.08)",
-                  color: "#2563eb",
-                  border: "1px solid rgba(37, 99, 235, 0.18)",
+                  background: "rgba(148, 163, 184, 0.08)",
+                  color: "#94A3B8",
+                  border: "1px solid rgba(148, 163, 184, 0.18)",
                 }}
               />
             </motion.div>
@@ -74,8 +74,7 @@ export default function OurPositionSection() {
             sx={{
               textAlign: "center",
               fontSize: { xs: "1.6rem", sm: "2rem", md: "2.5rem" },
-              fontWeight: 700,
-              color: "#0f172a",
+              color: "#18181B",
               lineHeight: 1.3,
               mb: 2,
               fontStyle: "italic",
@@ -94,7 +93,7 @@ export default function OurPositionSection() {
             style={{
               height: 3,
               borderRadius: 2,
-              background: "linear-gradient(90deg, #2563eb, #60a5fa)",
+              background: "linear-gradient(90deg, #94A3B8, #B8C4D4)",
               margin: "32px auto",
             }}
           />
@@ -105,7 +104,7 @@ export default function OurPositionSection() {
             variant="body1"
             sx={{
               textAlign: "center",
-              color: "#475569",
+              color: "#4B5563",
               fontSize: { xs: "1.05rem", md: "1.2rem" },
               lineHeight: 1.85,
               maxWidth: 680,
