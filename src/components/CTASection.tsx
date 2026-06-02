@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent, type ChangeEvent, useRef } from "react";
+import { useState, type FormEvent, type ChangeEvent } from "react";
 import {
   Box,
   Container,
@@ -13,29 +13,45 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
-import { motion, useInView } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
 import type { ContactFormData, ContactApiResponse } from "@/lib/types";
 
 const textFieldSx = {
   "& .MuiOutlinedInput-root": {
-    borderRadius: 2,
+    borderRadius: "10px",
+    backgroundColor: "#F8FAFC",
     transition: "all 0.3s ease",
+    "& fieldset": {
+      borderColor: "#E2E8F0",
+      borderWidth: "1.5px",
+    },
     "&:hover fieldset": {
-      borderColor: "#94A3B8",
+      borderColor: "#CBD5E1",
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#94A3B8",
+      borderColor: "#18181B",
+      borderWidth: "1.5px",
     },
     "&:hover": {
-      boxShadow: "0 2px 8px rgba(148, 163, 184, 0.08)",
+      backgroundColor: "#F1F5F9",
     },
     "&.Mui-focused": {
-      boxShadow: "0 2px 12px rgba(148, 163, 184, 0.12)",
+      backgroundColor: "#FFFFFF",
+      boxShadow: "0 0 0 3px rgba(24, 24, 27, 0.06)",
     },
   },
+  "& .MuiInputLabel-root": {
+    color: "#94A3B8",
+    fontSize: "0.95rem",
+  },
   "& .MuiInputLabel-root.Mui-focused": {
-    color: "#64748B",
+    color: "#18181B",
+  },
+  "& .MuiOutlinedInput-input": {
+    padding: "14px 16px",
+  },
+  "& .MuiOutlinedInput-input::placeholder": {
+    color: "#94A3B8",
+    opacity: 1,
   },
 };
 
@@ -63,9 +79,6 @@ export default function CTASection() {
     severity: "success",
     message: "",
   });
-
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -147,7 +160,6 @@ export default function CTASection() {
   return (
     <Box
       id="contact"
-      ref={sectionRef}
       sx={{
         pt: { xs: 12, md: 16 },
         pb: { xs: 10, md: 14 },
@@ -157,198 +169,231 @@ export default function CTASection() {
       }}
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        {/* ── Header ── */}
-        <AnimatedSection>
-          <Box sx={{ mb: { xs: 6, md: 8 } }}>
-            <Typography
-              variant="overline"
-              sx={{
-                color: "#94A3B8",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                fontSize: "0.75rem",
-                mb: 2,
-                display: "block",
-              }}
-            >
-              Contact
-            </Typography>
-            <Typography
-              variant="h2"
-              sx={{
-                fontSize: { xs: "2rem", md: "2.8rem" },
-                color: "#18181B",
-                mb: 2,
-              }}
-            >
-              Let&apos;s Talk
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#6B7280",
-                maxWidth: 560,
-                fontSize: { xs: "1rem", md: "1.1rem" },
-                lineHeight: 1.7,
-              }}
-            >
-              If your operations need more structure, or you&apos;re not sure
-              where to start — get in touch. We&apos;re happy to have a
-              straightforward conversation about what might help.
-            </Typography>
-          </Box>
-        </AnimatedSection>
-
-        <Grid container spacing={{ xs: 6, md: 10 }}>
-          {/* ── Left - Contact info ── */}
+        <Grid container spacing={{ xs: 8, md: 10 }} alignItems="flex-start">
+          {/* ── Left - Heading + Contact info ── */}
           <Grid size={{ xs: 12, md: 5 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <Stack spacing={4}>
+            <Stack spacing={6}>
+                {/* Heading block */}
                 <Box>
                   <Typography
-                    variant="h6"
+                    variant="overline"
                     sx={{
-                      color: "#18181B",
-                      fontSize: "1rem",
-                      mb: 1,
+                      color: "#94A3B8",
+                      fontWeight: 700,
+                      letterSpacing: "0.1em",
+                      fontSize: "0.75rem",
+                      mb: 2,
+                      display: "block",
                     }}
                   >
-                    Email
+                    Contact
+                  </Typography>
+                  <Typography
+                    variant="h2"
+                    sx={{
+                      fontSize: { xs: "2rem", md: "2.8rem" },
+                      color: "#18181B",
+                      mb: 2,
+                    }}
+                  >
+                    Let&apos;s Talk
                   </Typography>
                   <Typography
                     variant="body1"
                     sx={{
                       color: "#6B7280",
-                      fontSize: "1rem",
+                      fontSize: { xs: "1rem", md: "1.05rem" },
+                      lineHeight: 1.75,
                     }}
                   >
-                    contact@outlinestrategy.com
+                    If your operations need more structure, or you&apos;re not
+                    sure where to start — get in touch. We&apos;re happy to
+                    have a straightforward conversation about what might help.
                   </Typography>
                 </Box>
-                <Box>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      color: "#18181B",
-                      fontSize: "1rem",
-                      mb: 1,
-                    }}
-                  >
-                    Location
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: "#6B7280",
-                      fontSize: "1rem",
-                    }}
-                  >
-                    London, United Kingdom
-                  </Typography>
-                </Box>
+
+                {/* Contact details */}
+                <Stack spacing={4}>
+                  <Box>
+                    <Typography
+                      variant="overline"
+                      sx={{
+                        color: "#94A3B8",
+                        fontWeight: 600,
+                        letterSpacing: "0.08em",
+                        fontSize: "0.7rem",
+                        mb: 0.5,
+                        display: "block",
+                      }}
+                    >
+                      Email
+                    </Typography>
+                    <Typography
+                      component="a"
+                      href="mailto:contact@outlinestrategy.com"
+                      variant="body1"
+                      sx={{
+                        color: "#18181B",
+                        fontSize: "1rem",
+                        textDecoration: "none",
+                        borderBottom: "1px solid transparent",
+                        transition: "border-color 0.2s ease",
+                        "&:hover": {
+                          borderBottomColor: "#18181B",
+                        },
+                      }}
+                    >
+                      contact@outlinestrategy.com
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography
+                      variant="overline"
+                      sx={{
+                        color: "#94A3B8",
+                        fontWeight: 600,
+                        letterSpacing: "0.08em",
+                        fontSize: "0.7rem",
+                        mb: 0.5,
+                        display: "block",
+                      }}
+                    >
+                      Location
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: "#18181B",
+                        fontSize: "1rem",
+                      }}
+                    >
+                      London, United Kingdom
+                    </Typography>
+                  </Box>
+                </Stack>
               </Stack>
-            </motion.div>
           </Grid>
 
           {/* ── Right - Contact form ── */}
           <Grid size={{ xs: 12, md: 7 }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Box component="form" onSubmit={handleSubmit} noValidate>
-                <Stack spacing={3}>
-                  <TextField
-                    fullWidth
-                    label="Your name"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    error={!!errors.firstName}
-                    helperText={errors.firstName}
-                    variant="outlined"
-                    size="small"
-                    disabled={isSubmitting}
-                    sx={textFieldSx}
-                  />
-                  <TextField
-                    fullWidth
-                    label="Email address"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    error={!!errors.email}
-                    helperText={errors.email}
-                    variant="outlined"
-                    size="small"
-                    disabled={isSubmitting}
-                    sx={textFieldSx}
-                  />
-                  <TextField
-                    fullWidth
-                    label="Company (optional)"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    variant="outlined"
-                    size="small"
-                    disabled={isSubmitting}
-                    sx={textFieldSx}
-                  />
-                  <TextField
-                    fullWidth
-                    label="Tell us about your situation"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    error={!!errors.message}
-                    helperText={errors.message}
-                    multiline
-                    rows={4}
-                    variant="outlined"
-                    size="small"
-                    disabled={isSubmitting}
-                    sx={textFieldSx}
-                  />
-                  <Box>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      size="large"
+              <Box
+                sx={{
+                  backgroundColor: "#FAFBFC",
+                  borderRadius: "16px",
+                  border: "1px solid #E8ECF1",
+                  p: { xs: 3, md: 5 },
+                }}
+              >
+                <Box component="form" onSubmit={handleSubmit} noValidate>
+                  <Stack spacing={2.5}>
+                    <Grid container spacing={2.5}>
+                      <Grid size={{ xs: 12, sm: 6 }}>
+                        <TextField
+                          fullWidth
+                          label="First name"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          error={!!errors.firstName}
+                          helperText={errors.firstName}
+                          variant="outlined"
+                          disabled={isSubmitting}
+                          sx={textFieldSx}
+                        />
+                      </Grid>
+                      <Grid size={{ xs: 12, sm: 6 }}>
+                        <TextField
+                          fullWidth
+                          label="Last name"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          variant="outlined"
+                          disabled={isSubmitting}
+                          sx={textFieldSx}
+                        />
+                      </Grid>
+                    </Grid>
+                    <TextField
+                      fullWidth
+                      label="Email address"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      error={!!errors.email}
+                      helperText={errors.email}
+                      variant="outlined"
                       disabled={isSubmitting}
-                      endIcon={
-                        isSubmitting ? (
-                          <CircularProgress size={20} color="inherit" />
-                        ) : null
-                      }
+                      sx={textFieldSx}
+                    />
+                    <TextField
+                      fullWidth
+                      label="Company (optional)"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      variant="outlined"
+                      disabled={isSubmitting}
+                      sx={textFieldSx}
+                    />
+                    <TextField
+                      fullWidth
+                      label="Tell us about your situation"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      error={!!errors.message}
+                      helperText={errors.message}
+                      multiline
+                      rows={5}
+                      variant="outlined"
+                      disabled={isSubmitting}
                       sx={{
-                        background: "#18181B",
-                        color: "#fff",
-                        fontWeight: 600,
-                        px: 4,
-                        py: 1.5,
-                        fontSize: "0.95rem",
-                        borderRadius: "6px",
-                        "&:hover": {
-                          background: "#27272A",
-                          boxShadow:
-                            "0 4px 20px rgba(24, 24, 27, 0.15)",
+                        ...textFieldSx,
+                        "& .MuiOutlinedInput-input": {
+                          padding: "14px 16px",
                         },
-                        transition: "all 0.3s ease",
                       }}
-                    >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                    </Button>
-                  </Box>
-                </Stack>
+                    />
+                    <Box sx={{ pt: 1 }}>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        size="large"
+                        fullWidth
+                        disabled={isSubmitting}
+                        endIcon={
+                          isSubmitting ? (
+                            <CircularProgress size={20} color="inherit" />
+                          ) : null
+                        }
+                        sx={{
+                          background: "#18181B",
+                          color: "#fff",
+                          fontWeight: 600,
+                          py: 1.8,
+                          fontSize: "1rem",
+                          borderRadius: "10px",
+                          textTransform: "none",
+                          letterSpacing: "0.01em",
+                          "&:hover": {
+                            background: "#27272A",
+                            boxShadow:
+                              "0 4px 20px rgba(24, 24, 27, 0.2)",
+                          },
+                          "&:active": {
+                            transform: "scale(0.99)",
+                          },
+                          transition: "all 0.2s ease",
+                        }}
+                      >
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </Button>
+                    </Box>
+                  </Stack>
+                </Box>
               </Box>
-            </motion.div>
           </Grid>
         </Grid>
       </Container>

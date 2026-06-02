@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Box, Container, Typography, Chip, Grid } from "@mui/material";
+import { Box, Container, Typography, Grid } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import SearchIcon from "@mui/icons-material/Search";
 import ArchitectureIcon from "@mui/icons-material/Architecture";
@@ -75,14 +75,11 @@ function StepsRow() {
                 {/* Number */}
                 <Typography
                   sx={{
-                    fontWeight: 800,
-                    fontSize: "2.5rem",
+                    fontFamily: "var(--font-dm-serif), Georgia, serif",
+                    fontSize: "3rem",
                     lineHeight: 1,
-                    background: step.gradient,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    mb: 2,
+                    color: "#CBD5E1",
+                    mb: 2.5,
                   }}
                 >
                   {step.number}
@@ -167,22 +164,6 @@ function WhySection() {
         overflow: "hidden",
       }}
     >
-      {/* ── Decorative background ── */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(148, 163, 184, 0.04) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
-
       <Container maxWidth="md" sx={{ position: "relative", zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -193,9 +174,8 @@ function WhySection() {
           <Box
             sx={{
               width: 40,
-              height: 3,
-              borderRadius: 2,
-              background: "linear-gradient(90deg, #94A3B8, #B8C4D4)",
+              height: 2,
+              background: "#94A3B8",
               mx: { xs: 0, md: "auto" },
               mb: 3,
             }}
@@ -210,19 +190,7 @@ function WhySection() {
               textAlign: { xs: "left", md: "center" },
             }}
           >
-            Why This Order{" "}
-            <Box
-              component="span"
-              sx={{
-                background:
-                  "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 50%, #94A3B8 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Matters
-            </Box>
+            Why This Order Matters
           </Typography>
         </motion.div>
 
@@ -301,26 +269,20 @@ export default function WorkflowSection() {
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
           <AnimatedSection>
-            <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+            <Box sx={{ textAlign: "center", maxWidth: 720, mx: "auto" }}>
+              <Typography
+                variant="overline"
+                sx={{
+                  color: "#94A3B8",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  fontSize: "0.75rem",
+                  mb: 2,
+                  display: "block",
+                }}
               >
-                <Chip
-                  label="OUR APPROACH"
-                  sx={{
-                    mb: 2,
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    fontSize: "0.75rem",
-                    background: "rgba(148, 163, 184, 0.08)",
-                    color: "#94A3B8",
-                    border: "1px solid rgba(148, 163, 184, 0.18)",
-                  }}
-                />
-              </motion.div>
+                Our Approach
+              </Typography>
               <Typography
                 variant="h2"
                 sx={{
@@ -329,19 +291,7 @@ export default function WorkflowSection() {
                   mb: 2,
                 }}
               >
-                Understand. Design.{" "}
-                <Box
-                  component="span"
-                  sx={{
-                    background:
-                      "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 50%, #94A3B8 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Implement.
-                </Box>
+                Understand. Design. Implement.
               </Typography>
               <Typography
                 variant="body1"
@@ -358,19 +308,6 @@ export default function WorkflowSection() {
                 jumping to solutions. The goal is a system that fits your
                 business, not the other way around.
               </Typography>
-
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: 80 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                style={{
-                  height: 3,
-                  borderRadius: 2,
-                  background: "linear-gradient(90deg, #94A3B8, #B8C4D4)",
-                  margin: "24px auto 0",
-                }}
-              />
             </Box>
           </AnimatedSection>
         </Container>

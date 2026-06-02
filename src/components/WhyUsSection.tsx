@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Box, Container, Typography, Chip, Grid, Button } from "@mui/material";
+import { Box, Container, Typography, Grid, Button } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Link from "next/link";
@@ -62,61 +62,29 @@ export default function WhyUsSection() {
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
           <AnimatedSection>
-            <Box sx={{ textAlign: "center" }}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+            <Box sx={{ textAlign: "center", maxWidth: 760, mx: "auto" }}>
+              <Typography
+                variant="overline"
+                sx={{
+                  color: "#94A3B8",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  fontSize: "0.75rem",
+                  mb: 2,
+                  display: "block",
+                }}
               >
-                <Chip
-                  label="ABOUT"
-                  sx={{
-                    mb: 2,
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    fontSize: "0.75rem",
-                    background: "rgba(148, 163, 184, 0.08)",
-                    color: "#94A3B8",
-                    border: "1px solid rgba(148, 163, 184, 0.18)",
-                  }}
-                />
-              </motion.div>
+                About
+              </Typography>
               <Typography
                 variant="h2"
                 sx={{
                   fontSize: { xs: "2rem", md: "2.8rem" },
                   color: "#18181B",
-                  mb: 2,
                 }}
               >
-                A Small Consultancy with a{" "}
-                <Box
-                  component="span"
-                  sx={{
-                    background:
-                      "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 50%, #94A3B8 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Clear Focus
-                </Box>
+                A Small Consultancy with a Clear Focus
               </Typography>
-
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: 80 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                style={{
-                  height: 3,
-                  borderRadius: 2,
-                  background: "linear-gradient(90deg, #94A3B8, #B8C4D4)",
-                  margin: "24px auto 0",
-                }}
-              />
             </Box>
           </AnimatedSection>
         </Container>
@@ -126,7 +94,8 @@ export default function WhyUsSection() {
       <Box
         ref={whoRef}
         sx={{
-          py: { xs: 6, md: 10 },
+          pt: { xs: 4, md: 6 },
+          pb: { xs: 8, md: 12 },
           background: "#FFFFFF",
           position: "relative",
         }}
@@ -207,21 +176,6 @@ export default function WhyUsSection() {
           overflow: "hidden",
         }}
       >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 600,
-            height: 600,
-            borderRadius: "50%",
-            background:
-              "radial-gradient(circle, rgba(148, 163, 184, 0.04) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }}
-        />
-
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -236,7 +190,7 @@ export default function WhyUsSection() {
                   fontWeight: 700,
                   letterSpacing: "0.1em",
                   fontSize: "0.75rem",
-                  mb: 1,
+                  mb: 1.5,
                   display: "block",
                 }}
               >
@@ -245,11 +199,9 @@ export default function WhyUsSection() {
               <Box
                 sx={{
                   width: 40,
-                  height: 3,
-                  borderRadius: 2,
-                  background: "linear-gradient(90deg, #94A3B8, #B8C4D4)",
+                  height: 2,
+                  background: "#94A3B8",
                   mx: "auto",
-                  mt: 1,
                 }}
               />
             </Box>
@@ -272,9 +224,7 @@ export default function WhyUsSection() {
                       sx={{
                         width: 30,
                         height: 2,
-                        borderRadius: 1,
-                        background:
-                          "linear-gradient(90deg, #94A3B8, #B8C4D4)",
+                        background: "#94A3B8",
                         mb: 2.5,
                       }}
                     />
@@ -357,18 +307,19 @@ export default function WhyUsSection() {
                   size="large"
                   endIcon={<ArrowForwardIcon />}
                   sx={{
-                    background:
-                      "linear-gradient(135deg, #94A3B8 0%, #64748B 100%)",
+                    background: "#18181B",
                     color: "#fff",
                     fontWeight: 600,
-                    px: 5,
+                    px: 4,
                     py: 1.8,
-                    fontSize: "1rem",
+                    fontSize: "0.85rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
                     textDecoration: "none",
+                    borderRadius: "4px",
                     "&:hover": {
-                      background:
-                        "linear-gradient(135deg, #64748B 0%, #4A5568 100%)",
-                      boxShadow: "0 8px 30px rgba(148, 163, 184, 0.35)",
+                      background: "#27272A",
+                      boxShadow: "0 8px 30px rgba(24, 24, 27, 0.18)",
                     },
                     transition: "all 0.3s ease",
                   }}

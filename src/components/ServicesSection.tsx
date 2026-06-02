@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Box,
-  Container,
-  Typography,
-  Chip,
-  Grid,
-  Stack,
-} from "@mui/material";
+import { Box, Container, Typography, Grid, Stack } from "@mui/material";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
@@ -93,22 +86,6 @@ function ServiceSection({
           inset: 0,
           backgroundImage: `radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.03) 1px, transparent 0)`,
           backgroundSize: "48px 48px",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* ── Decorative radial glow ── */}
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: isReversed ? "20%" : "80%",
-          transform: "translate(-50%, -50%)",
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(148, 163, 184, 0.04) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -235,9 +212,8 @@ function ServiceSection({
                 <Box
                   sx={{
                     width: 40,
-                    height: 3,
-                    borderRadius: 2,
-                    background: service.gradient,
+                    height: 2,
+                    background: service.color,
                     mb: 3,
                   }}
                 />
@@ -333,26 +309,20 @@ export default function ServicesSection() {
 
         <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
           <AnimatedSection>
-            <Box sx={{ textAlign: "center" }}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+            <Box sx={{ textAlign: "center", maxWidth: 720, mx: "auto" }}>
+              <Typography
+                variant="overline"
+                sx={{
+                  color: "#94A3B8",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  fontSize: "0.75rem",
+                  mb: 2,
+                  display: "block",
+                }}
               >
-                <Chip
-                  label="SERVICES"
-                  sx={{
-                    mb: 2,
-                    fontWeight: 700,
-                    letterSpacing: "0.08em",
-                    fontSize: "0.75rem",
-                    background: "rgba(148, 163, 184, 0.08)",
-                    color: "#94A3B8",
-                    border: "1px solid rgba(148, 163, 184, 0.18)",
-                  }}
-                />
-              </motion.div>
+                Services
+              </Typography>
               <Typography
                 variant="h2"
                 sx={{
@@ -361,19 +331,7 @@ export default function ServicesSection() {
                   mb: 2,
                 }}
               >
-                What We{" "}
-                <Box
-                  component="span"
-                  sx={{
-                    background:
-                      "linear-gradient(135deg, #94A3B8 0%, #B8C4D4 50%, #94A3B8 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Do
-                </Box>
+                What We Do
               </Typography>
               <Typography
                 variant="body1"
@@ -390,20 +348,6 @@ export default function ServicesSection() {
                 connected data, and the visibility you need to make better
                 decisions.
               </Typography>
-
-              {/* ── Decorative divider line ── */}
-              <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: 80 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                style={{
-                  height: 3,
-                  borderRadius: 2,
-                  background: "linear-gradient(90deg, #94A3B8, #B8C4D4)",
-                  margin: "24px auto 0",
-                }}
-              />
             </Box>
           </AnimatedSection>
         </Container>
