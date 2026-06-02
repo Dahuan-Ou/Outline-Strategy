@@ -64,6 +64,7 @@ export default function Navbar() {
       >
         <Container maxWidth="lg">
           <Toolbar
+            disableGutters
             sx={{
               justifyContent: "space-between",
               py: scrolled ? 0.5 : 1.5,
