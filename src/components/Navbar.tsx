@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -32,6 +32,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,16 +48,17 @@ export default function Navbar() {
     <>
       <AppBar
         position="fixed"
-        elevation={scrolled ? 1 : 0}
+        elevation={0}
         sx={{
-          background: showLight
-            ? "rgba(248, 249, 250, 0.92)"
-            : "transparent",
-          backdropFilter: showLight ? "blur(20px)" : "none",
-          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          borderBottom: showLight
-            ? "1px solid rgba(24, 24, 27, 0.06)"
+          background: scrolled
+            ? "rgba(248, 249, 250, 0.96)"
+            : "rgba(248, 249, 250, 0.85)",
+          backdropFilter: "blur(20px) saturate(180%)",
+          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+          boxShadow: scrolled
+            ? "0 8px 30px -14px rgba(24, 24, 27, 0.18)"
             : "none",
+          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
         <Container maxWidth="lg">
@@ -79,18 +81,52 @@ export default function Navbar() {
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  gap: 1,
+                  gap: 1.25,
                   textDecoration: "none",
+                  "&:hover .logo-mark-inner": {
+                    transform: "translate(-2px, -2px)",
+                  },
                 }}
               >
+                {/* Brand mark */}
+                <Box
+                  sx={{
+                    position: "relative",
+                    width: 24,
+                    height: 24,
+                    flexShrink: 0,
+                  }}
+                >
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      inset: 0,
+                      border: "1.5px solid #18181B",
+                      borderRadius: "5px",
+                    }}
+                  />
+                  <Box
+                    className="logo-mark-inner"
+                    sx={{
+                      position: "absolute",
+                      right: 4,
+                      bottom: 4,
+                      width: 9,
+                      height: 9,
+                      background: "#18181B",
+                      borderRadius: "2px",
+                      transition:
+                        "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    }}
+                  />
+                </Box>
                 <Box
                   component="span"
                   sx={{
                     fontSize: "1.3rem",
                     fontFamily: "var(--font-dm-serif), Georgia, serif",
                     fontWeight: 400,
-                    color: showLight ? "#18181B" : "#fff",
-                    transition: "color 0.4s ease",
+                    color: "#18181B",
                     letterSpacing: "-0.01em",
                   }}
                 >
@@ -104,7 +140,7 @@ export default function Navbar() {
               sx={{
                 display: { xs: "none", md: "flex" },
                 alignItems: "center",
-                gap: 1,
+                gap: 0.5,
               }}
             >
               {navItems.map((item, index) => {
@@ -119,46 +155,61 @@ export default function Navbar() {
                     <Button
                       component={Link}
                       href={item.href}
+                      disableRipple
                       sx={{
-                        color:
-                          showLight
-                            ? isActive
-                              ? "#18181B"
-                              : "#4B5563"
-                            : isActive
-                              ? "#fff"
-                              : "rgba(255,255,255,0.85)",
+                        color: isActive ? "#18181B" : "#52525B",
                         fontWeight: isActive ? 600 : 500,
-                        fontSize: "0.82rem",
-                        letterSpacing: "0.08em",
+                        fontSize: "0.8rem",
+                        letterSpacing: "0.1em",
                         textTransform: "uppercase",
-                        px: 2,
+                        px: 1.75,
                         py: 1,
-                        borderRadius: "50px",
-                        transition: "all 0.3s ease",
+                        borderRadius: 0,
+                        minWidth: 0,
                         position: "relative",
-                        "&::after": isActive
-                          ? {
-                              content: '""',
-                              position: "absolute",
-                              bottom: 4,
-                              left: "30%",
-                              right: "30%",
-                              height: 2,
-                              borderRadius: 1,
-                              background:
-                                "linear-gradient(90deg, #94A3B8, #B8C4D4)",
-                            }
-                          : {},
+                        transition: "color 0.3s ease",
+                        "&::after": {
+                          content: '""',
+                          position: "absolute",
+                          left: 14,
+                          right: 14,
+                          bottom: 6,
+                          height: "1.5px",
+                          background: "#94A3B8",
+                          transform: "scaleX(0)",
+                          transformOrigin: "center",
+                          transition:
+                            "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                        },
                         "&:hover": {
-                          background: showLight
-                            ? "rgba(24, 24, 27, 0.05)"
-                            : "rgba(255, 255, 255, 0.12)",
-                          color: showLight ? "#18181B" : "#fff",
+                          background: "transparent",
+                          color: "#18181B",
+                        },
+                        "&:hover::after": {
+                          transform: isActive ? "scaleX(0)" : "scaleX(1)",
                         },
                       }}
                     >
                       {item.label}
+                      {isActive && (
+                        <motion.div
+                          layoutId="navUnderline"
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 32,
+                          }}
+                          style={{
+                            position: "absolute",
+                            left: 14,
+                            right: 14,
+                            bottom: 6,
+                            height: "2px",
+                            borderRadius: "2px",
+                            background: "#18181B",
+                          }}
+                        />
+                      )}
                     </Button>
                   </motion.div>
                 );
@@ -177,6 +228,28 @@ export default function Navbar() {
             </IconButton>
           </Toolbar>
         </Container>
+
+        {/* Scroll progress bar (also serves as the nav's bottom edge) */}
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 2,
+            background: "rgba(24, 24, 27, 0.08)",
+          }}
+        >
+          <motion.div
+            style={{
+              scaleX: scrollYProgress,
+              transformOrigin: "left",
+              width: "100%",
+              height: "100%",
+              background: "#18181B",
+            }}
+          />
+        </Box>
       </AppBar>
 
       {/* Mobile Drawer */}
