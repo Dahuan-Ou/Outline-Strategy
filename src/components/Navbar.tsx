@@ -41,18 +41,20 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const showLight = true;
+
   return (
     <>
       <AppBar
         position="fixed"
         elevation={scrolled ? 1 : 0}
         sx={{
-          background: scrolled
+          background: showLight
             ? "rgba(248, 249, 250, 0.92)"
             : "transparent",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
+          backdropFilter: showLight ? "blur(20px)" : "none",
           transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-          borderBottom: scrolled
+          borderBottom: showLight
             ? "1px solid rgba(24, 24, 27, 0.06)"
             : "none",
         }}
@@ -87,7 +89,8 @@ export default function Navbar() {
                     fontSize: "1.3rem",
                     fontFamily: "var(--font-dm-serif), Georgia, serif",
                     fontWeight: 400,
-                    color: "#18181B",
+                    color: showLight ? "#18181B" : "#fff",
+                    transition: "color 0.4s ease",
                     letterSpacing: "-0.01em",
                   }}
                 >
@@ -118,7 +121,7 @@ export default function Navbar() {
                       href={item.href}
                       sx={{
                         color:
-                          true
+                          showLight
                             ? isActive
                               ? "#18181B"
                               : "#4B5563"
@@ -148,11 +151,10 @@ export default function Navbar() {
                             }
                           : {},
                         "&:hover": {
-                          background:
-                            true
-                              ? "rgba(24, 24, 27, 0.05)"
-                              : "rgba(255, 255, 255, 0.12)",
-                          color: true ? "#18181B" : "#fff",
+                          background: showLight
+                            ? "rgba(24, 24, 27, 0.05)"
+                            : "rgba(255, 255, 255, 0.12)",
+                          color: showLight ? "#18181B" : "#fff",
                         },
                       }}
                     >
@@ -168,7 +170,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(true)}
               sx={{
                 display: { md: "none" },
-                color: true ? "#18181B" : "#fff",
+                color: showLight ? "#18181B" : "#fff",
               }}
             >
               <MenuIcon />

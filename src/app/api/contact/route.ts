@@ -180,7 +180,7 @@ export async function POST(
     // recipients (e.g. raveena.r.rajput@gmail.com) back to the `to` array.
     const { error } = await resend.emails.send({
       from: "Outline Strategy Website <onboarding@resend.dev>",
-      to: ["dahuan.ou@gmail.com"],
+      to: ["raveena.r.rajput@gmail.com"],
       replyTo: email,
       subject: `New Contact: ${firstName} ${lastName} from ${company}`,
       html: buildEmailHtml({ firstName, lastName, email, company, message }),
