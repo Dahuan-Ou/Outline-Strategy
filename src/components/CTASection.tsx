@@ -226,7 +226,7 @@ export default function CTASection() {
                       fontSize: "1rem",
                     }}
                   >
-                    hello@outlinestrategy.com
+                    contact@outlinestrategy.com
                   </Typography>
                 </Box>
                 <Box>

@@ -105,7 +105,7 @@ export default function Footer() {
                 fontSize: "0.9rem",
               }}
             >
-              hello@outlinestrategy.com
+              contact@outlinestrategy.com
             </Typography>
           </Grid>
         </Grid>
