@@ -2,6 +2,7 @@
 
 import { Box, Container, Typography, Grid, Stack } from "@mui/material";
 import Link from "next/link";
+import { LogoMark } from "./Logo";
 
 const navLinks = [
   { label: "Services", href: "/services" },
@@ -25,12 +26,15 @@ export default function Footer() {
         <Grid container spacing={4} sx={{ mb: 6 }}>
           {/* Brand */}
           <Grid size={{ xs: 12, md: 5 }}>
-            <Typography
-              variant="h6"
-              sx={{ fontFamily: "var(--font-dm-serif), Georgia, serif", fontWeight: 400, color: "#fff", mb: 2 }}
-            >
-              Outline Strategy
-            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.25, mb: 2, color: "#fff" }}>
+              <LogoMark size={24} />
+              <Typography
+                variant="h6"
+                sx={{ fontFamily: "var(--font-dm-serif), Georgia, serif", fontWeight: 400, color: "#fff" }}
+              >
+                Outline Strategy
+              </Typography>
+            </Box>
             <Typography
               variant="body2"
               sx={{

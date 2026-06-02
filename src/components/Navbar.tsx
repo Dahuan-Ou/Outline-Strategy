@@ -19,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LogoMark } from "./Logo";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -83,42 +84,15 @@ export default function Navbar() {
                   alignItems: "center",
                   gap: 1.25,
                   textDecoration: "none",
-                  "&:hover .logo-mark-inner": {
-                    transform: "translate(-2px, -2px)",
+                  color: "#18181B",
+                  "&:hover .logo-mark": {
+                    transform: "scale(1.08)",
                   },
                 }}
               >
                 {/* Brand mark */}
-                <Box
-                  sx={{
-                    position: "relative",
-                    width: 24,
-                    height: 24,
-                    flexShrink: 0,
-                  }}
-                >
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      inset: 0,
-                      border: "1.5px solid #18181B",
-                      borderRadius: "5px",
-                    }}
-                  />
-                  <Box
-                    className="logo-mark-inner"
-                    sx={{
-                      position: "absolute",
-                      right: 4,
-                      bottom: 4,
-                      width: 9,
-                      height: 9,
-                      background: "#18181B",
-                      borderRadius: "2px",
-                      transition:
-                        "transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                    }}
-                  />
+                <Box sx={{ display: "inline-flex", flexShrink: 0 }}>
+                  <LogoMark size={24} className="logo-mark" />
                 </Box>
                 <Box
                   component="span"
